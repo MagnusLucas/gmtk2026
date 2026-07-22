@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="OurTileData" format=3 uid="uid://duikbvl75hybn"]
+
+[ext_resource type="Script" uid="uid://cmdcpiwc4qcvs" path="res://data/our_tile_data/our_tile_data.gd" id="1_2ibtk"]
+
+[resource]
+script = ExtResource("1_2ibtk")
+metadata/_custom_type_script = "uid://cmdcpiwc4qcvs"
