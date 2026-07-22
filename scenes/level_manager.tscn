@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cgktk2s24v6mw"]
 
-[ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://boss.gd" id="1_3maf5"]
-[ext_resource type="Script" uid="uid://db210udx0pgua" path="res://level_manager.gd" id="1_ftccg"]
-[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://placeholder_sprite_frames.tres" id="2_bj8vm"]
-[ext_resource type="Script" uid="uid://cjxm1y0wjfpfp" path="res://player_unit.gd" id="2_gpfvb"]
-[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://boss_resource.gd" id="2_k1abw"]
-[ext_resource type="Script" uid="uid://csb6luywibjym" path="res://label.gd" id="4_k1abw"]
-[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://unit_resource.gd" id="5_s60hn"]
-[ext_resource type="Script" uid="uid://cc6aq1pdoopor" path="res://BaseAttack.gd" id="6_fxbef"]
-[ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://lose_popup.tscn" id="8_fxbef"]
-[ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://win_popup.tscn" id="10_v5q41"]
+[ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://i am honestly not sure but dont wanna leave a mess/boss.gd" id="1_3maf5"]
+[ext_resource type="Script" uid="uid://db210udx0pgua" path="res://i am honestly not sure but dont wanna leave a mess/level_manager.gd" id="1_ftccg"]
+[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://i am honestly not sure but dont wanna leave a mess/placeholder_sprite_frames.tres" id="2_bj8vm"]
+[ext_resource type="Script" uid="uid://cjxm1y0wjfpfp" path="res://i am honestly not sure but dont wanna leave a mess/player_unit.gd" id="2_gpfvb"]
+[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://i am honestly not sure but dont wanna leave a mess/boss_resource.gd" id="2_k1abw"]
+[ext_resource type="Script" uid="uid://csb6luywibjym" path="res://i am honestly not sure but dont wanna leave a mess/label.gd" id="4_k1abw"]
+[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://i am honestly not sure but dont wanna leave a mess/unit_resource.gd" id="5_s60hn"]
+[ext_resource type="Script" uid="uid://cc6aq1pdoopor" path="res://i am honestly not sure but dont wanna leave a mess/base_attack.gd" id="6_fxbef"]
+[ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
+[ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://scenes/win_popup.tscn" id="10_v5q41"]
 
 [sub_resource type="Animation" id="Animation_5x5fn"]
 length = 0.13333334
@@ -114,7 +114,6 @@ offset_bottom = 23.0
 script = ExtResource("4_k1abw")
 
 [node name="LosePopup" parent="." unique_id=804366258 instance=ExtResource("8_fxbef")]
-process_mode = 2
 visible = false
 
 [node name="WinPopup" parent="." unique_id=880691489 instance=ExtResource("10_v5q41")]

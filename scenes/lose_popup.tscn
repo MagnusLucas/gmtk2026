@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://d2hmy5ios0876"]
+[gd_scene format=3 uid="uid://bwpmel6p2x5xv"]
 
-[ext_resource type="Script" uid="uid://dl1elkvcylwq4" path="res://win_pop_up.gd" id="1_rxt7s"]
+[ext_resource type="Script" uid="uid://dp33irq8xtkex" path="res://i am honestly not sure but dont wanna leave a mess/lost_pop_up.gd" id="1_57auq"]
 
 [sub_resource type="Animation" id="Animation_ulhbb"]
 length = 0.001
@@ -63,7 +63,7 @@ _data = {
 &"losing_text": SubResource("Animation_4nm0x")
 }
 
-[node name="WinPopup" type="Control" unique_id=804366258]
+[node name="LosePopup" type="Control" unique_id=804366258]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -71,7 +71,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rxt7s")
+script = ExtResource("1_57auq")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2116305999]
 layout_mode = 1
@@ -98,7 +98,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-text = "YOU won :>"
+text = "YOU LOST EVERYTHING EVEN THE LOSING ITSELF"
 horizontal_alignment = 1
 vertical_alignment = 1
 
