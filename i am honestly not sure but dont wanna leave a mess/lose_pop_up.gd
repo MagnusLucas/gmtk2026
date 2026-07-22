@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimationPlayer.play("losing_text")
 	pass # Replace with function body.
 
 
@@ -10,7 +11,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
+	   
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/level_manager.tscn")
