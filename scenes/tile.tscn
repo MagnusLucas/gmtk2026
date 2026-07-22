@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dxifl4lqvcmsr"]
+
+[ext_resource type="Script" uid="uid://dnes0j6rqkh4b" path="res://scenes/tile.gd" id="1_jy7pm"]
+[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="1_ywnoi"]
+[ext_resource type="Script" uid="uid://bp7p2dw6tva63" path="res://components/atlas_coords_texture.gd" id="2_jy7pm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiyn6"]
+resource_local_to_scene = true
+atlas = ExtResource("1_ywnoi")
+region = Rect2(0, 0, 64, 64)
+script = ExtResource("2_jy7pm")
+metadata/_custom_type_script = "uid://bp7p2dw6tva63"
+
+[node name="Tile" type="Area2D" unique_id=508948405]
+script = ExtResource("1_jy7pm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=13322082]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1557859440]
+texture = SubResource("AtlasTexture_uiyn6")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1582983497]
+visible = false
+points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+closed = true
+width = 3.0
+default_color = Color(0, 0, 0, 1)
