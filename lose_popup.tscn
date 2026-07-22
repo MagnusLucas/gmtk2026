@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bwpmel6p2x5xv"]
+
+[ext_resource type="Script" uid="uid://dp33irq8xtkex" path="res://lost_pop_up.gd" id="1_57auq"]
+
+[sub_resource type="Animation" id="Animation_ulhbb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4nm0x"]
+resource_name = "losing_text"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.66, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.18500490071139933, 0.14486232791552955]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxlm4"]
+_data = {
+&"RESET": SubResource("Animation_ulhbb"),
+&"losing_text": SubResource("Animation_4nm0x")
+}
+
+[node name="LosePopup" type="Control" unique_id=804366258]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_57auq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2116305999]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.3
+anchor_right = 0.8
+anchor_bottom = 0.7
+offset_bottom = 3.0517578e-05
+color = Color(0.07058824, 0.07058824, 0.07058824, 0.28627452)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1584736529]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.5
+offset_top = -11.5
+offset_right = 187.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "YOU LOST EVERYTHING EVEN THE LOSING ITSELF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1686040322]
+libraries/ = SubResource("AnimationLibrary_mxlm4")
+
+[node name="Restart_button" type="Button" parent="." unique_id=1030319725]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 430.0
+offset_right = 678.0
+offset_bottom = 526.0
+theme_override_font_sizes/font_size = 64
+text = "restart"
+
+[connection signal="pressed" from="Restart_button" to="." method="_on_restart_button_pressed"]

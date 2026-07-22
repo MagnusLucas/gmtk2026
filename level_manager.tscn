@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://cgktk2s24v6mw"]
+
+[ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://boss.gd" id="1_3maf5"]
+[ext_resource type="Script" uid="uid://db210udx0pgua" path="res://level_manager.gd" id="1_ftccg"]
+[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://placeholder_sprite_frames.tres" id="2_bj8vm"]
+[ext_resource type="Script" uid="uid://cjxm1y0wjfpfp" path="res://player_unit.gd" id="2_gpfvb"]
+[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://boss_resource.gd" id="2_k1abw"]
+[ext_resource type="Script" uid="uid://csb6luywibjym" path="res://label.gd" id="4_k1abw"]
+[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://unit_resource.gd" id="5_s60hn"]
+[ext_resource type="Script" uid="uid://cc6aq1pdoopor" path="res://BaseAttack.gd" id="6_fxbef"]
+[ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://lose_popup.tscn" id="8_fxbef"]
+[ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://win_popup.tscn" id="10_v5q41"]
+
+[sub_resource type="Animation" id="Animation_5x5fn"]
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bj8vm"]
+resource_name = "new_animation"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2, 0.23333333),
+"transitions": PackedFloat32Array(1, 2.639016, 2.7320821, 0.13397163),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.4), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Unit/AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.23333335),
+"transitions": PackedFloat32Array(1, 1.5691684, 7.2100058, 0.13397163),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.4), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s60hn"]
+_data = {
+&"RESET": SubResource("Animation_5x5fn"),
+&"idle_bounce": SubResource("Animation_bj8vm")
+}
+
+[sub_resource type="Resource" id="Resource_3maf5"]
+script = ExtResource("2_k1abw")
+time_countdown = 10
+health = 500
+animated_texture_frames = ExtResource("2_bj8vm")
+metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgse7"]
+
+[sub_resource type="Resource" id="Resource_fxbef"]
+script = ExtResource("6_fxbef")
+metadata/_custom_type_script = "uid://cc6aq1pdoopor"
+
+[sub_resource type="Resource" id="Resource_bj8vm"]
+script = ExtResource("5_s60hn")
+name = "uni1"
+attacks = Array[ExtResource("6_fxbef")]([SubResource("Resource_fxbef")])
+animated_texture_frames = ExtResource("2_bj8vm")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[node name="Level_Manager" type="Node" unique_id=503023504]
+script = ExtResource("1_ftccg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=315579128]
+libraries/ = SubResource("AnimationLibrary_s60hn")
+
+[node name="Boss" type="Node2D" parent="." unique_id=1747862268 groups=["enemy"]]
+modulate = Color(0.6457063, 0.19020623, 0, 1)
+position = Vector2(907, 299)
+script = ExtResource("1_3maf5")
+stats = SubResource("Resource_3maf5")
+
+[node name="Countdown" type="Timer" parent="Boss" unique_id=516587495]
+unique_name_in_owner = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss" unique_id=810237230]
+sprite_frames = SubResource("SpriteFrames_hgse7")
+
+[node name="Player_Unit" type="Node2D" parent="." unique_id=1699273561]
+modulate = Color(0, 1, 0.7176471, 1)
+position = Vector2(347, 286)
+script = ExtResource("2_gpfvb")
+stats = SubResource("Resource_bj8vm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_Unit" unique_id=595195356]
+
+[node name="Label" type="Label" parent="." unique_id=1059429564]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_k1abw")
+
+[node name="LosePopup" parent="." unique_id=804366258 instance=ExtResource("8_fxbef")]
+process_mode = 2
+visible = false
+
+[node name="WinPopup" parent="." unique_id=880691489 instance=ExtResource("10_v5q41")]
+visible = false
+
+[connection signal="timeout" from="Boss/Countdown" to="." method="_on_countdown_timeout"]
