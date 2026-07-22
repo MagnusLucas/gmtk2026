@@ -17,6 +17,8 @@ func _ready() -> void:
 
 
 func set_tile(tile: Tile, target_position: Vector2i) -> void:
+	if !board.try_set_tile(tile.get_tile_data(), target_position):
+		return
 	add_child(tile, true)
 	tile.position = map_to_local(target_position)
 	tile.left_clicked.connect(tile_swapper.mark_tile.bind(tile))

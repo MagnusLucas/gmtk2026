@@ -9,9 +9,12 @@ const TILE = preload("uid://dxifl4lqvcmsr")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 
-static func new_tile(tile_data: OurTileData) -> Tile:
+var tile_data: OurTileData
+
+
+static func new_tile(our_tile_data: OurTileData) -> Tile:
 	var tile: Tile = TILE.instantiate()
-	tile.set_tile_data(tile_data)
+	tile.set_tile_data(our_tile_data)
 	return tile
 
 
@@ -36,9 +39,14 @@ func set_marked(marked: bool) -> void:
 	line_2d.visible = marked
 
 
-func set_tile_data(tile_data: OurTileData) -> void:
+func set_tile_data(our_tile_data: OurTileData) -> void:
 	if is_node_ready():
+		tile_data = our_tile_data
 		var atlas_coords_texture := sprite_2d.texture as AtlasCoordsTexture
 		atlas_coords_texture.set_coordinates(tile_data.atlas_position)
 	else:
-		ready.connect(set_tile_data.bind(tile_data), CONNECT_ONE_SHOT)
+		ready.connect(set_tile_data.bind(our_tile_data), CONNECT_ONE_SHOT)
+
+
+func get_tile_data() -> OurTileData:
+	return tile_data

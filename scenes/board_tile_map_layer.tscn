@@ -2,13 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bcc8ntvve0xrx" path="res://scenes/board_tile_map_layer.gd" id="1_5xyjd"]
 [ext_resource type="Script" uid="uid://b8cnnpee2o5on" path="res://scenes/tile_swapper.gd" id="2_aj641"]
+[ext_resource type="Script" uid="uid://bn7hngu2wfjgp" path="res://data/board.gd" id="2_j40nc"]
 
 [sub_resource type="TileSet" id="TileSet_o36qv"]
 tile_size = Vector2i(64, 64)
 
+[sub_resource type="Resource" id="Resource_aj641"]
+script = ExtResource("2_j40nc")
+size = Vector2i(5, 5)
+metadata/_custom_type_script = "uid://bn7hngu2wfjgp"
+
 [node name="BoardTileMapLayer" type="TileMapLayer" unique_id=1549379355]
 tile_set = SubResource("TileSet_o36qv")
 script = ExtResource("1_5xyjd")
+board = SubResource("Resource_aj641")
 
 [node name="TileSwapper" type="Node2D" parent="." unique_id=1599080291]
 script = ExtResource("2_aj641")
