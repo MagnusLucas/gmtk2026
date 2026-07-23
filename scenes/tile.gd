@@ -42,8 +42,6 @@ func set_marked(marked: bool) -> void:
 func set_tile_data(our_tile_data: OurTileData) -> void:
 	if is_node_ready():
 		tile_data = our_tile_data
-		var atlas_coords_texture := sprite_2d.texture as AtlasCoordsTexture
-		atlas_coords_texture.set_coordinates(tile_data.atlas_position)
 	else:
 		ready.connect(set_tile_data.bind(our_tile_data), CONNECT_ONE_SHOT)
 

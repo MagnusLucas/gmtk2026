@@ -2,17 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dnes0j6rqkh4b" path="res://scenes/tile.gd" id="1_jy7pm"]
 [ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="1_ywnoi"]
-[ext_resource type="Script" uid="uid://bp7p2dw6tva63" path="res://components/atlas_coords_texture.gd" id="2_jy7pm"]
+[ext_resource type="Shader" uid="uid://t57xkq3rqrus" path="res://assets/wires.gdshader" id="2_q7utx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uiyn6"]
-resource_local_to_scene = true
-atlas = ExtResource("1_ywnoi")
-region = Rect2(0, 0, 64, 64)
-script = ExtResource("2_jy7pm")
-metadata/_custom_type_script = "uid://bp7p2dw6tva63"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jy7pm"]
+shader = ExtResource("2_q7utx")
+shader_parameter/wire_wobbles = 6
+shader_parameter/wobble_relative_height = 0.04
+shader_parameter/wire_height = 0.04
+shader_parameter/left = true
+shader_parameter/right = true
+shader_parameter/top = true
+shader_parameter/bottom = true
 
 [node name="Tile" type="Area2D" unique_id=508948405]
 script = ExtResource("1_jy7pm")
@@ -21,7 +24,9 @@ script = ExtResource("1_jy7pm")
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1557859440]
-texture = SubResource("AtlasTexture_uiyn6")
+material = SubResource("ShaderMaterial_jy7pm")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ywnoi")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1582983497]
 visible = false
