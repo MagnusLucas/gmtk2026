@@ -65,7 +65,7 @@ _data = {
 [sub_resource type="Resource" id="Resource_3maf5"]
 script = ExtResource("2_k1abw")
 time_countdown = 10
-health = 500
+health = 5
 animated_texture_frames = ExtResource("2_bj8vm")
 metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
 

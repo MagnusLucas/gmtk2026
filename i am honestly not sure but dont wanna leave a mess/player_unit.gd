@@ -25,11 +25,12 @@ func attack(attack_index):
 	#weź grupe enemy i pierwszgeo z nich aka bossa l8
 	target = get_tree().get_nodes_in_group("enemy")[0]
 	
-	var  bullet = packed_bullet.instantiate()
-	bullet.get_node("Sprite2D").texture = active_attack.bullet_texture
-	bullet.linear_velocity = Vector2(target.position-position).normalized() * active_attack.bullet_speed
-	bullet.name = 'bullet_'+bullet.name
-	bullet.damage = active_attack.dmg_per_bullet
+	
 	
 	for i in active_attack.bullet_amount:
+		var  bullet = packed_bullet.instantiate()
+		bullet.get_node("Sprite2D").texture = active_attack.bullet_texture
+		bullet.linear_velocity = Vector2(target.position-position).normalized() * active_attack.bullet_speed
+		bullet.name = 'bullet_'+bullet.name
+		bullet.damage = active_attack.dmg_per_bullet
 		attack_queued.append([bullet,active_attack.bullet_interval])
