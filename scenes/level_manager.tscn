@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://i am honestly not sure but dont wanna leave a mess/boss_resource.gd" id="2_k1abw"]
 [ext_resource type="Script" uid="uid://csb6luywibjym" path="res://i am honestly not sure but dont wanna leave a mess/label.gd" id="4_k1abw"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://i am honestly not sure but dont wanna leave a mess/unit_resource.gd" id="5_s60hn"]
-[ext_resource type="Script" uid="uid://cc6aq1pdoopor" path="res://i am honestly not sure but dont wanna leave a mess/base_attack.gd" id="6_fxbef"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://i am honestly not sure but dont wanna leave a mess/attack_resource.gd" id="6_704g2"]
+[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="7_l4ie8"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
 [ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://scenes/win_popup.tscn" id="10_v5q41"]
 
@@ -70,14 +71,18 @@ metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hgse7"]
 
-[sub_resource type="Resource" id="Resource_fxbef"]
-script = ExtResource("6_fxbef")
-metadata/_custom_type_script = "uid://cc6aq1pdoopor"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgse7"]
+
+[sub_resource type="Resource" id="Resource_4eql6"]
+script = ExtResource("6_704g2")
+bullet_texture = ExtResource("7_l4ie8")
+bullet_speed = 3000.0
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
 [sub_resource type="Resource" id="Resource_bj8vm"]
 script = ExtResource("5_s60hn")
 name = "uni1"
-attacks = Array[ExtResource("6_fxbef")]([SubResource("Resource_fxbef")])
+attacks = Array[ExtResource("6_704g2")]([SubResource("Resource_4eql6")])
 animated_texture_frames = ExtResource("2_bj8vm")
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
@@ -100,6 +105,11 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss" unique_id=810237230]
 sprite_frames = SubResource("SpriteFrames_hgse7")
 
+[node name="Area2D" type="Area2D" parent="Boss" unique_id=2098518274]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/Area2D" unique_id=1929922966]
+shape = SubResource("RectangleShape2D_hgse7")
+
 [node name="Player_Unit" type="Node2D" parent="." unique_id=1699273561]
 modulate = Color(0, 1, 0.7176471, 1)
 position = Vector2(347, 286)
@@ -107,6 +117,9 @@ script = ExtResource("2_gpfvb")
 stats = SubResource("Resource_bj8vm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_Unit" unique_id=595195356]
+
+[node name="Timer" type="Timer" parent="Player_Unit" unique_id=327127982]
+one_shot = true
 
 [node name="Label" type="Label" parent="." unique_id=1059429564]
 offset_right = 40.0
@@ -120,3 +133,4 @@ visible = false
 visible = false
 
 [connection signal="timeout" from="Boss/Countdown" to="." method="_on_countdown_timeout"]
+[connection signal="body_entered" from="Boss/Area2D" to="Boss" method="_on_area_2d_body_entered"]
