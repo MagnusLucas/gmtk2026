@@ -76,6 +76,7 @@ metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
 [sub_resource type="Resource" id="Resource_4eql6"]
 script = ExtResource("6_704g2")
 bullet_texture = ExtResource("7_l4ie8")
+bullet_interval = 0.01
 bullet_speed = 3000.0
 metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 

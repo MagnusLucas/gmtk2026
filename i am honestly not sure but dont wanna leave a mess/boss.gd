@@ -27,5 +27,4 @@ func _on_area_2d_body_entered(body: Bullet) -> void:
 	if health <=0:
 		queue_free()
 		if get_tree().get_node_count_in_group("enemy") == 1:
-			print('kjshdf')
 			get_owner().win()
