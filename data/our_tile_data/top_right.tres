@@ -5,4 +5,9 @@
 [resource]
 script = ExtResource("1_k7fsk")
 atlas_position = Vector2i(0, 1)
+connections = Dictionary[int, bool]({
+0: true,
+1: true,
+2: true
+})
 metadata/_custom_type_script = "uid://cmdcpiwc4qcvs"

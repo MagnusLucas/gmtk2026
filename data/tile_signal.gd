@@ -19,6 +19,7 @@ func _init(source_side: OurTileData.Side, signal_strength: float,
 	source = source_side
 	wait_time = int(perfect_wait_time_seconds * 1000)
 	birth_time = Time.get_ticks_msec()
+	#print(self)
 
 
 func time_to_live() -> int:
@@ -78,8 +79,9 @@ func calculate_accuracy_cos(time_since_birth: float) -> float:
 func _to_string() -> String:
 	var result := ""
 	
-	result += "perfect time: " + str(float(wait_time)/100) + " seconds\n"
+	result += "perfect time: " + str(float(wait_time)/1000) + " seconds\n"
 	result += "current_time: " + str(float(Time.get_ticks_msec() - birth_time)/ 100)
 	result += " seconds\nstrength: " + str(calculate_strength())
+	result += "\nsource: " + OurTileData.SIDE_STRING[source]
 	
 	return result

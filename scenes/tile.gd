@@ -42,6 +42,11 @@ func set_marked(marked: bool) -> void:
 func set_tile_data(our_tile_data: OurTileData) -> void:
 	if is_node_ready():
 		tile_data = our_tile_data
+		var shader_material: ShaderMaterial = sprite_2d.material as ShaderMaterial
+		for enum_value: OurTileData.Side in OurTileData.Side.values():
+			var shader_parameter := OurTileData.SIDE_STRING[enum_value]
+			var parameter_value := our_tile_data.connections.has((int(enum_value) + 2) % 4) #https://github.com/godotengine/godot/issues/94395 ig this cause fuck me :l
+			shader_material.set_shader_parameter(shader_parameter, parameter_value)
 	else:
 		ready.connect(set_tile_data.bind(our_tile_data), CONNECT_ONE_SHOT)
 

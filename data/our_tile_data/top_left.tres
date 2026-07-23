@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_2ibtk")
+connections = Dictionary[int, bool]({
+0: true
+})
 metadata/_custom_type_script = "uid://cmdcpiwc4qcvs"

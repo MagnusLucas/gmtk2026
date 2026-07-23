@@ -8,6 +8,7 @@
 size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jy7pm"]
+resource_local_to_scene = true
 shader = ExtResource("2_q7utx")
 shader_parameter/wire_wobbles = 6
 shader_parameter/wobble_relative_height = 0.04

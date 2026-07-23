@@ -9,6 +9,13 @@ enum Side{
 	TOP
 }
 
+const SIDE_STRING: Dictionary[OurTileData.Side, String] = {
+	Side.RIGHT : "right",
+	Side.BOTTOM : "bottom",
+	Side.LEFT : "left",
+	Side.TOP : "top"
+}
+
 
 const SIDE_TO_VECTOR: Dictionary[OurTileData.Side, Vector2i] = {
 	Side.RIGHT : Vector2i.RIGHT,
