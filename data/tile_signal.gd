@@ -19,7 +19,6 @@ func _init(source_side: OurTileData.Side, signal_strength: float,
 	source = source_side
 	wait_time = int(perfect_wait_time_seconds * 1000)
 	birth_time = Time.get_ticks_msec()
-	print(self)
 
 
 func time_to_live() -> int:
