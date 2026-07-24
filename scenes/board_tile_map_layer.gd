@@ -11,6 +11,7 @@ const TOP_LEFT = preload("uid://duikbvl75hybn")
 const TOP_RIGHT = preload("uid://bipschdun40ay")
 
 var tile_data_array: Array[OurTileData] = [CROSS_WIRE, TOP_LEFT, TOP_RIGHT]
+var tile_dict: Dictionary[Vector2i, Tile]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,9 +35,12 @@ func set_tile(tile: Tile, target_position: Vector2i) -> void:
 	tile.position = map_to_local(target_position)
 	tile.left_clicked.connect(tile_swapper.mark_tile.bind(tile, target_position))
 	tile.right_clicked.connect(signal_manager.spread_signal.bind(target_position))
+	tile_dict[target_position] = tile
 
 
 func _on_signal_created(tile_position: Vector2i, tile_signal: TileSignal) -> void:
 	var test := TestSignalShower.from_signal(tile_signal)
 	add_child(test)
 	test.position = map_to_local(tile_position)
+	tile_dict[tile_position].receiving_signal = true
+	tile_dict[tile_position].animating = true

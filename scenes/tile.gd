@@ -8,8 +8,9 @@ const TILE = preload("uid://dxifl4lqvcmsr")
 @onready var line_2d: Line2D = $Line2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-
 var tile_data: OurTileData
+var animating := false
+var receiving_signal := false
 
 
 static func new_tile(our_tile_data: OurTileData) -> Tile:
@@ -21,6 +22,21 @@ static func new_tile(our_tile_data: OurTileData) -> Tile:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	input_event.connect(_on_input_event)
+	var signal_texture := SignalTexture.new()
+	sprite_2d.texture = signal_texture
+	signal_texture.animation_finished.connect(
+		func(): 
+			receiving_signal = !receiving_signal
+			animating = false
+	)
+
+
+func _process(delta: float) -> void:
+	if animating:
+		if receiving_signal:
+			sprite_2d.texture.animate_inward(delta)
+		else:
+			sprite_2d.texture.animate_outward(delta)
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -33,6 +49,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			return
 		if mouse_button_event.button_index == MOUSE_BUTTON_RIGHT:
 			right_clicked.emit()
+			animating = true
 
 
 func set_marked(marked: bool) -> void:

@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://i am honestly not sure but dont wanna leave a mess/boss_resource.gd" id="2_k1abw"]
 [ext_resource type="Script" uid="uid://csb6luywibjym" path="res://i am honestly not sure but dont wanna leave a mess/label.gd" id="4_k1abw"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://i am honestly not sure but dont wanna leave a mess/unit_resource.gd" id="5_s60hn"]
-[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://i am honestly not sure but dont wanna leave a mess/attack_resource.gd" id="6_704g2"]
-[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="7_l4ie8"]
+[ext_resource type="Script" path="res://i am honestly not sure but dont wanna leave a mess/base_attack.gd" id="6_l4ie8"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
 [ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://scenes/win_popup.tscn" id="10_v5q41"]
+[ext_resource type="PackedScene" uid="uid://k07np4o6ppx" path="res://scenes/board_tile_map_layer.tscn" id="11_s3v2u"]
 
 [sub_resource type="Animation" id="Animation_5x5fn"]
 length = 0.13333334
@@ -73,17 +73,9 @@ metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgse7"]
 
-[sub_resource type="Resource" id="Resource_4eql6"]
-script = ExtResource("6_704g2")
-bullet_texture = ExtResource("7_l4ie8")
-bullet_interval = 0.01
-bullet_speed = 3000.0
-metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
-
 [sub_resource type="Resource" id="Resource_bj8vm"]
 script = ExtResource("5_s60hn")
 name = "uni1"
-attacks = Array[ExtResource("6_704g2")]([SubResource("Resource_4eql6")])
 animated_texture_frames = ExtResource("2_bj8vm")
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
@@ -132,6 +124,9 @@ visible = false
 
 [node name="WinPopup" parent="." unique_id=880691489 instance=ExtResource("10_v5q41")]
 visible = false
+
+[node name="BoardTileMapLayer" parent="." unique_id=1549379355 instance=ExtResource("11_s3v2u")]
+position = Vector2(180, 149)
 
 [connection signal="timeout" from="Boss/Countdown" to="." method="_on_countdown_timeout"]
 [connection signal="body_entered" from="Boss/Area2D" to="Boss" method="_on_area_2d_body_entered"]
