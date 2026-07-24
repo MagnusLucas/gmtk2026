@@ -6,17 +6,25 @@ extends TileMapLayer
 @onready var signal_manager: SignalManager = $SignalManager
 @onready var tile_swapper: TileSwapper = $TileSwapper
 
+const CROSS_WIRE = preload("uid://cv5ftp81ddrmr")
+const TOP_LEFT = preload("uid://duikbvl75hybn")
+const TOP_RIGHT = preload("uid://bipschdun40ay")
+
+var tile_data_array: Array[OurTileData] = [CROSS_WIRE, TOP_LEFT, TOP_RIGHT]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	const CROSS_WIRE = preload("uid://cv5ftp81ddrmr")
-	
-	signal_manager.created_signal.connect(_on_signal_created)
+	signal_manager.signal_created.connect(_on_signal_created)
 	
 	for i in board.size.x:
 		for j in board.size.y:
-			set_tile(Tile.new_tile(CROSS_WIRE), Vector2i(i, j))
-	signal_manager.create_signal(Vector2i(0, 0))
+			set_tile(Tile.new_tile(random_tile_data()), Vector2i(i, j))
+	signal_manager.create_signal(Vector2i.ZERO, OurTileData.Side.TOP, 1.0, 3.0)
+
+
+func random_tile_data() -> OurTileData:
+	return tile_data_array.pick_random()
 
 
 func set_tile(tile: Tile, target_position: Vector2i) -> void:

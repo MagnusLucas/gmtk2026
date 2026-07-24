@@ -12,18 +12,23 @@ var strength: float
 
 var birth_time: int
 
+const MILISECONDS_IN_SECOND := 1000
+
 
 func _init(source_side: OurTileData.Side, signal_strength: float,
 		perfect_wait_time_seconds: float) -> void:
 	strength = signal_strength
 	source = source_side
-	wait_time = int(perfect_wait_time_seconds * 1000)
+	wait_time = int(perfect_wait_time_seconds * MILISECONDS_IN_SECOND)
 	birth_time = Time.get_ticks_msec()
-	#print(self)
 
 
 func time_to_live() -> int:
 	return round(wait_time * (1 + max_inaccuracy))
+
+
+func perfect_seconds() -> float:
+	return float(wait_time)/MILISECONDS_IN_SECOND
 
 
 func is_valid() -> bool:
