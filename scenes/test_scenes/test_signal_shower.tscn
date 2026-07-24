@@ -4,6 +4,5 @@
 [ext_resource type="Script" uid="uid://8js1oy57rh4h" path="res://scenes/test_scenes/test_signal_shower.gd" id="2_8ia2a"]
 
 [node name="TestSignalShower" type="Sprite2D" unique_id=245354105]
-position = Vector2(323, 205)
 texture = ExtResource("1_jm0mp")
 script = ExtResource("2_8ia2a")
