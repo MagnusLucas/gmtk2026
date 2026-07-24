@@ -47,9 +47,11 @@ func spread_signal(signal_position: Vector2i) -> void:
 		if side == signal_to_spread.source:
 			print(OurTileData.Side.find_key(side) + " is source")
 			continue
+		print("spreading " + OurTileData.Side.find_key(side))
 		var neighbour_position = signal_position + OurTileData.SIDE_TO_VECTOR[side]
 		if active_signals.has(neighbour_position):
 			# Remove the other signal maybe?
+			print("has signal! omitting")
 			continue
 		
 		# This doesn't account for players being unable (skill issued)
@@ -61,6 +63,10 @@ func spread_signal(signal_position: Vector2i) -> void:
 			new_signal_strength,
 			float(signal_to_spread.wait_time) / 1000
 			)
+		active_signals[neighbour_position].died.connect(
+			func():
+				active_signals.erase(neighbour_position)
+		)
 		#active_signals[neighbour_position].died.connect(print.bind(
 			#str(active_signals[neighbour_position]) + " died!"
 			#), CONNECT_ONE_SHOT)
