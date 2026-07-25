@@ -29,6 +29,7 @@ func _ready() -> void:
 			receiving_signal = !receiving_signal
 			animating = false
 	)
+	signal_texture.set_signal(false)
 
 
 func _process(delta: float) -> void:
