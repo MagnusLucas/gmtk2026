@@ -52,8 +52,8 @@ _data = {
 &"shoot": SubResource("Animation_mkf8s")
 }
 
-[node name="Bullet" type="RigidBody2D" unique_id=970919745]
-gravity_scale = 0.0
+[node name="Bullet" type="Area2D" unique_id=1762751876]
+collision_mask = 2
 script = ExtResource("1_mkf8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=6578922]
@@ -64,4 +64,4 @@ shape = SubResource("CircleShape2D_nj8pf")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1224034812]
 libraries/ = SubResource("AnimationLibrary_y25gk")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -4,18 +4,37 @@
 [ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="2_olled"]
 [ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="3_qkmtv"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="4_3ydk3"]
-[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="4_olled"]
+[ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="4_olled"]
 
-[sub_resource type="Resource" id="Resource_cow7c"]
+[sub_resource type="Gradient" id="Gradient_olled"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3955224)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qkmtv"]
+gradient = SubResource("Gradient_olled")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Resource" id="Resource_h03sj"]
+script = ExtResource("4_olled")
+texture = SubResource("GradientTexture2D_qkmtv")
+damage = 2.5
+fly_time = 1.0
+metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"
+
+[sub_resource type="Resource" id="Resource_8txj0"]
 script = ExtResource("3_qkmtv")
-bullet_texture = ExtResource("4_olled")
+bullet = SubResource("Resource_h03sj")
 metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
 [sub_resource type="Resource" id="Resource_bj8vm"]
 resource_local_to_scene = true
 script = ExtResource("4_3ydk3")
 name = "uni1"
-attacks = Array[ExtResource("3_qkmtv")]([SubResource("Resource_cow7c")])
+attacks = Array[ExtResource("3_qkmtv")]([SubResource("Resource_8txj0")])
 animated_texture_frames = ExtResource("2_olled")
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
@@ -29,5 +48,4 @@ position = Vector2(12, 13)
 scale = Vector2(0.185, 0.185)
 sprite_frames = ExtResource("2_olled")
 
-[node name="Timer" type="Timer" parent="." unique_id=161439932]
-one_shot = true
+[node name="BulletSpawnIntervalTimer" type="Timer" parent="." unique_id=161439932]

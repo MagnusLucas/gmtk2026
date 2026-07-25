@@ -1,4 +1,5 @@
-extends Node2D
+class_name Boss
+extends Area2D
 
 @export var stats: BossAttributes
 var health
@@ -16,15 +17,9 @@ func _ready() -> void:
 	health = stats.health
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-func _on_area_2d_body_entered(body: Bullet) -> void:
-	health -= body.damage
-	body.queue_free()
-	if health <=0:
+func take_damage(amount: float) -> void:
+	health -= amount
+	if health <= 0:
 		queue_free()
 		if get_tree().get_node_count_in_group("enemy") == 1:
 			get_owner().win()

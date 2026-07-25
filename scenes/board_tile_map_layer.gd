@@ -73,5 +73,4 @@ func _on_tile_right_clicked(tile_position: Vector2i) -> void:
 	if is_zero_approx(attack_strength):
 		return
 	
-	const MAGIC_NUMBER_FOR_COMPATIBILITY := 0
-	units[tile_position].attack(MAGIC_NUMBER_FOR_COMPATIBILITY, attack_strength)
+	units[tile_position].attack(attack_strength)

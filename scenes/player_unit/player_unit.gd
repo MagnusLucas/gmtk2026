@@ -1,38 +1,39 @@
 class_name PlayerUnit
 extends Node2D
 
-@export var stats: UnitAttributes
 const PACKED_BULLET = preload("res://scenes/bullet.tscn")
-var target: Node
 
-## [0] is bullet instance, [1] is timer wait time
-var attack_queued: Array[Array] = []
-#var cooldown # unused, so I commented it out
+@export var stats: UnitAttributes
+
+var target: Node2D
+var bullets_to_spawn := 0
+var strength_modifier := 0.0
+var active_attack: AttackResource
+
+@onready var bullet_spawn_interval_timer: Timer = $BulletSpawnIntervalTimer
 
 
 func _ready() -> void:
 	$AnimatedSprite2D.sprite_frames = stats.animated_texture_frames
+	bullet_spawn_interval_timer.timeout.connect(_on_timer_timeout)
+
+
+# This setup will spawn bullets from new active attack if any are remaining,
+# but I don't think it'll be a problem in this project
+func attack(attack_strength_modifier: float = 1):
+	strength_modifier = attack_strength_modifier
 	
-
-func _process(delta: float) -> void:
-	if attack_queued != [] and $Timer.is_stopped() == true:
-		add_child(attack_queued[0][0])
-		$Timer.wait_time = attack_queued[0][1]
-		$Timer.start()
-		attack_queued.pop_front()
-
-
-## Attack index as int is not usable in any reasonable way whatsoever,
-## it really should be done differently :<
-func attack(attack_index: int, attack_strength_modifier: float = 1):
-	var active_attack: AttackResource = stats.attacks[attack_index]
+	active_attack = stats.attacks[0]
 	#weź grupe enemy i pierwszgeo z nich aka bossa l8
 	target = get_tree().get_nodes_in_group("enemy")[0]
 	
-	for i in active_attack.bullet_amount:
-		var  bullet: Bullet = PACKED_BULLET.instantiate()
-		bullet.get_node("Sprite2D").texture = active_attack.bullet_texture
-		bullet.linear_velocity = Vector2(target.position-position).normalized() * active_attack.bullet_speed
-		bullet.name = 'bullet_'+bullet.name
-		bullet.damage = active_attack.dmg_per_bullet * attack_strength_modifier
-		attack_queued.append([bullet,active_attack.bullet_interval])
+	bullets_to_spawn += active_attack.bullet_amount
+	bullet_spawn_interval_timer.start(active_attack.bullet_interval)
+
+
+func _on_timer_timeout() -> void:
+	BulletManager.Instance.spawn_bullet(active_attack.bullet, global_position,
+			target, strength_modifier)
+	bullets_to_spawn -= 1
+	if bullets_to_spawn == 0:
+		bullet_spawn_interval_timer.stop()
