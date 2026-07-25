@@ -63,7 +63,6 @@ func spread_signal(signal_position: Vector2i) -> void:
 		active_signals.erase(signal_position)
 		return
 	
-	print(board.set_tiles)
 	for side: OurTileData.Side in board.set_tiles[signal_position].connections.keys():
 		if side == signal_to_spread.source:
 			continue

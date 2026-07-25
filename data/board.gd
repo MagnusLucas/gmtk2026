@@ -4,7 +4,6 @@ extends Resource
 @export var size: Vector2i
 
 var set_tiles: Dictionary[Vector2i, OurTileData]
-var set_characters: Dictionary[Vector2i, Variant]
 var unit_attributes_dict: Dictionary[Vector2i, UnitAttributes]
 
 
@@ -27,3 +26,8 @@ func set_tile(tile_data: OurTileData, coordinates: Vector2i) -> void:
 
 func has_unit_at(coordinates: Vector2i) -> bool:
 	return unit_attributes_dict.has(coordinates)
+
+
+func clear() -> void:
+	set_tiles = {}
+	unit_attributes_dict = {}

@@ -7,9 +7,9 @@ extends TileMapLayer
 @onready var signal_manager: SignalManager = $SignalManager
 @onready var tile_swapper: TileSwapper = $TileSwapper
 
-var CROSS_WIRE = load("uid://cv5ftp81ddrmr")
-var TOP_LEFT = load("uid://duikbvl75hybn")
-var TOP_RIGHT = load("uid://bipschdun40ay")
+const CROSS_WIRE = preload("uid://cv5ftp81ddrmr")
+const TOP_LEFT = preload("uid://duikbvl75hybn")
+const TOP_RIGHT = preload("uid://bipschdun40ay")
 
 var tile_data_array: Array[OurTileData] = [CROSS_WIRE, TOP_LEFT, TOP_RIGHT]
 var tile_dict: Dictionary[Vector2i, Tile]
@@ -21,12 +21,12 @@ var units: Dictionary[Vector2i, PlayerUnit]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	signal_manager.signal_created.connect(_on_signal_created)
+	board.clear()
 	
 	for i in board.size.x:
 		for j in board.size.y:
 			set_tile(Tile.new_tile(random_tile_data()), Vector2i(i, j))
-	print("created tiles ", board.size)
+	signal_manager.signal_created.connect(_on_signal_created)
 	signal_manager.create_signal(Vector2i.ZERO, OurTileData.Side.TOP, 1.0, 3.0)
 	
 	for player_unit in player_unit_arr:
@@ -45,6 +45,7 @@ func random_tile_data() -> OurTileData:
 
 func set_tile(tile: Tile, target_position: Vector2i) -> void:
 	if !board.try_set_tile(tile.get_tile_data(), target_position):
+		print_debug("tile occupied!")
 		return
 	add_child(tile, true)
 	tile.position = map_to_local(target_position)
@@ -58,7 +59,6 @@ func _on_signal_created(tile_position: Vector2i, tile_signal: TileSignal) -> voi
 	var test := TestSignalShower.from_signal(tile_signal)
 	add_child(test)
 	test.position = map_to_local(tile_position)
-	print(tile_dict)
 	tile_dict[tile_position].receiving_signal = true
 	tile_dict[tile_position].animating = true
 
