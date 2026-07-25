@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Board" format=3 uid="uid://bnwmive85j4mu"]
+
+[ext_resource type="Script" uid="uid://bn7hngu2wfjgp" path="res://data/board.gd" id="1_s54qi"]
+
+[resource]
+script = ExtResource("1_s54qi")
+size = Vector2i(5, 5)
+metadata/_custom_type_script = "uid://bn7hngu2wfjgp"

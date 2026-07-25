@@ -1,6 +1,5 @@
-extends Resource
-
 class_name BulletAttributes
+extends Resource
 
 var dmg_per_bullet : float = 2.5
 var bullet_texture : Texture2D 

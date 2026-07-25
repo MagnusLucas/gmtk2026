@@ -1,6 +1,5 @@
-extends Resource
-
 class_name AttackResource
+extends Resource
 
 @export var dmg_per_bullet : float = 2.5
 @export var bullet_texture : Texture2D 

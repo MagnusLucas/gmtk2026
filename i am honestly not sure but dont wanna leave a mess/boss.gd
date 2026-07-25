@@ -12,7 +12,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.sprite_frames = stats.animated_texture_frames
 	%Countdown.wait_time = stats.time_countdown
 	%Countdown.start()
-	$"../AnimationPlayer".play("idle_bounce")
+	$AnimationPlayer.play("idle_bounce")
 	health = stats.health
 
 

@@ -3,9 +3,9 @@ extends Resource
 
 @export var size: Vector2i
 
-
 var set_tiles: Dictionary[Vector2i, OurTileData]
 var set_characters: Dictionary[Vector2i, Variant]
+var unit_attributes_dict: Dictionary[Vector2i, UnitAttributes]
 
 
 func is_point_in_bounds(coordinates: Vector2i) -> bool:
@@ -23,3 +23,7 @@ func try_set_tile(tile_data: OurTileData, coordinates: Vector2i) -> bool:
 
 func set_tile(tile_data: OurTileData, coordinates: Vector2i) -> void:
 	set_tiles[coordinates] = tile_data
+
+
+func has_unit_at(coordinates: Vector2i) -> bool:
+	return unit_attributes_dict.has(coordinates)

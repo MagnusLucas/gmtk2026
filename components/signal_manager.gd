@@ -10,9 +10,18 @@ const REVERSE_DIRECTION: Dictionary[OurTileData.Side, OurTileData.Side] = {
 
 signal signal_created(tile_position: Vector2i, tile_signal: TileSignal)
 
+static var Instance: SignalManager
+
 @export var board: Board
 
 var active_signals: Dictionary[Vector2i, TileSignal]
+
+
+func _ready() -> void:
+	if Instance:
+		for connection: Dictionary[String, Variant] in Instance.signal_created.get_connections():
+			Instance.signal_created.disconnect(connection["callable"])
+	Instance = self
 
 
 func _process(_delta: float) -> void:
@@ -37,6 +46,12 @@ func create_signal(signal_position: Vector2i, source :OurTileData.Side,
 	return tile_signal
 
 
+func get_signal_strength(coordinates: Vector2i) -> float:
+	if !active_signals.has(coordinates):
+		return 0
+	return active_signals[coordinates].calculate_strength()
+
+
 func spread_signal(signal_position: Vector2i) -> void:
 	if !active_signals.has(signal_position):
 		return
@@ -48,6 +63,7 @@ func spread_signal(signal_position: Vector2i) -> void:
 		active_signals.erase(signal_position)
 		return
 	
+	print(board.set_tiles)
 	for side: OurTileData.Side in board.set_tiles[signal_position].connections.keys():
 		if side == signal_to_spread.source:
 			continue

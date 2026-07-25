@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://tg80xev8scww"]
+
+[ext_resource type="Script" uid="uid://cjxm1y0wjfpfp" path="res://scenes/player_unit/player_unit.gd" id="1_bv0iy"]
+[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="2_olled"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="3_qkmtv"]
+[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="4_3ydk3"]
+[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="4_olled"]
+
+[sub_resource type="Resource" id="Resource_cow7c"]
+script = ExtResource("3_qkmtv")
+bullet_texture = ExtResource("4_olled")
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
+
+[sub_resource type="Resource" id="Resource_bj8vm"]
+resource_local_to_scene = true
+script = ExtResource("4_3ydk3")
+name = "uni1"
+attacks = Array[ExtResource("3_qkmtv")]([SubResource("Resource_cow7c")])
+animated_texture_frames = ExtResource("2_olled")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[node name="Player_Unit" type="Node2D" unique_id=713205843]
+modulate = Color(0, 1, 0.7176471, 1)
+script = ExtResource("1_bv0iy")
+stats = SubResource("Resource_bj8vm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=218183732]
+position = Vector2(12, 13)
+scale = Vector2(0.185, 0.185)
+sprite_frames = ExtResource("2_olled")
+
+[node name="Timer" type="Timer" parent="." unique_id=161439932]
+one_shot = true

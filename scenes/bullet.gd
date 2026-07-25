@@ -1,4 +1,5 @@
-extends RigidBody2D
 class_name Bullet
-var target
-var damage
+extends RigidBody2D
+
+var target: Node
+var damage: float

@@ -2,15 +2,27 @@
 
 [ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://i am honestly not sure but dont wanna leave a mess/boss.gd" id="1_3maf5"]
 [ext_resource type="Script" uid="uid://db210udx0pgua" path="res://i am honestly not sure but dont wanna leave a mess/level_manager.gd" id="1_ftccg"]
-[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://i am honestly not sure but dont wanna leave a mess/placeholder_sprite_frames.tres" id="2_bj8vm"]
-[ext_resource type="Script" uid="uid://cjxm1y0wjfpfp" path="res://i am honestly not sure but dont wanna leave a mess/player_unit.gd" id="2_gpfvb"]
-[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://i am honestly not sure but dont wanna leave a mess/boss_resource.gd" id="2_k1abw"]
+[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="2_bj8vm"]
+[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://data/boss_resource.gd" id="2_k1abw"]
 [ext_resource type="Script" uid="uid://csb6luywibjym" path="res://i am honestly not sure but dont wanna leave a mess/label.gd" id="4_k1abw"]
-[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://i am honestly not sure but dont wanna leave a mess/unit_resource.gd" id="5_s60hn"]
-[ext_resource type="Script" path="res://i am honestly not sure but dont wanna leave a mess/base_attack.gd" id="6_l4ie8"]
+[ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit.tscn" id="5_cow7c"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
+[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="10_s3v2u"]
 [ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://scenes/win_popup.tscn" id="10_v5q41"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="11_8txj0"]
 [ext_resource type="PackedScene" uid="uid://k07np4o6ppx" path="res://scenes/board_tile_map_layer.tscn" id="11_s3v2u"]
+[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="12_h03sj"]
+
+[sub_resource type="Resource" id="Resource_3maf5"]
+script = ExtResource("2_k1abw")
+time_countdown = 10
+health = 5
+animated_texture_frames = ExtResource("2_bj8vm")
+metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgse7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgse7"]
 
 [sub_resource type="Animation" id="Animation_5x5fn"]
 length = 0.13333334
@@ -43,18 +55,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.5, 0.4), Vector2(0.9, 1.1), Vector2(1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player_Unit/AnimatedSprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.23333335),
-"transitions": PackedFloat32Array(1, 1.5691684, 7.2100058, 0.13397163),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 0.4), Vector2(0.9, 1.1), Vector2(1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s60hn"]
 _data = {
@@ -62,28 +62,73 @@ _data = {
 &"idle_bounce": SubResource("Animation_bj8vm")
 }
 
-[sub_resource type="Resource" id="Resource_3maf5"]
-script = ExtResource("2_k1abw")
-time_countdown = 10
-health = 5
-animated_texture_frames = ExtResource("2_bj8vm")
-metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3v2u"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s3v2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hgse7"]
+[sub_resource type="Resource" id="Resource_cow7c"]
+script = ExtResource("11_8txj0")
+bullet_texture = ExtResource("10_s3v2u")
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgse7"]
-
-[sub_resource type="Resource" id="Resource_bj8vm"]
-script = ExtResource("5_s60hn")
+[sub_resource type="Resource" id="Resource_8txj0"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
 name = "uni1"
-animated_texture_frames = ExtResource("2_bj8vm")
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_cow7c")])
+animated_texture_frames = SubResource("SpriteFrames_s3v2u")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h03sj"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s3v2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_2t3te"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
+name = "uni1"
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_cow7c")])
+animated_texture_frames = SubResource("SpriteFrames_h03sj")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhn1i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s3v2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_jt70k"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
+name = "uni1"
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_cow7c")])
+animated_texture_frames = SubResource("SpriteFrames_vhn1i")
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
 [node name="Level_Manager" type="Node" unique_id=503023504]
 script = ExtResource("1_ftccg")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=315579128]
-libraries/ = SubResource("AnimationLibrary_s60hn")
 
 [node name="Boss" type="Node2D" parent="." unique_id=1747862268 groups=["enemy"]]
 modulate = Color(0.6457063, 0.19020623, 0, 1)
@@ -103,16 +148,9 @@ sprite_frames = SubResource("SpriteFrames_hgse7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/Area2D" unique_id=1929922966]
 shape = SubResource("RectangleShape2D_hgse7")
 
-[node name="Player_Unit" type="Node2D" parent="." unique_id=1699273561]
-modulate = Color(0, 1, 0.7176471, 1)
-position = Vector2(347, 286)
-script = ExtResource("2_gpfvb")
-stats = SubResource("Resource_bj8vm")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_Unit" unique_id=595195356]
-
-[node name="Timer" type="Timer" parent="Player_Unit" unique_id=327127982]
-one_shot = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boss" unique_id=315579128]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_s60hn")
 
 [node name="Label" type="Label" parent="." unique_id=1059429564]
 offset_right = 40.0
@@ -125,8 +163,21 @@ visible = false
 [node name="WinPopup" parent="." unique_id=880691489 instance=ExtResource("10_v5q41")]
 visible = false
 
-[node name="BoardTileMapLayer" parent="." unique_id=1549379355 instance=ExtResource("11_s3v2u")]
+[node name="BoardTileMapLayer" parent="." unique_id=1549379355 node_paths=PackedStringArray("player_unit_arr") instance=ExtResource("11_s3v2u")]
 position = Vector2(180, 149)
+player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("Player_Unit3")]
+
+[node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 instance=ExtResource("5_cow7c")]
+position = Vector2(116, 13)
+stats = SubResource("Resource_8txj0")
+
+[node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 instance=ExtResource("5_cow7c")]
+position = Vector2(4, 73)
+stats = SubResource("Resource_2t3te")
+
+[node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 instance=ExtResource("5_cow7c")]
+position = Vector2(103, 97)
+stats = SubResource("Resource_jt70k")
 
 [connection signal="timeout" from="Boss/Countdown" to="." method="_on_countdown_timeout"]
 [connection signal="body_entered" from="Boss/Area2D" to="Boss" method="_on_area_2d_body_entered"]
