@@ -1,93 +1,146 @@
 [gd_scene format=3 uid="uid://cgktk2s24v6mw"]
 
-[ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://i am honestly not sure but dont wanna leave a mess/boss.gd" id="1_3maf5"]
 [ext_resource type="Script" uid="uid://db210udx0pgua" path="res://i am honestly not sure but dont wanna leave a mess/level_manager.gd" id="1_ftccg"]
-[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="2_bj8vm"]
-[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://data/boss_resource.gd" id="2_k1abw"]
-[ext_resource type="Script" uid="uid://csb6luywibjym" path="res://i am honestly not sure but dont wanna leave a mess/label.gd" id="4_k1abw"]
+[ext_resource type="PackedScene" uid="uid://dl5epcybgax8k" path="res://scenes/boss.tscn" id="2_kq0y1"]
+[ext_resource type="Script" uid="uid://qufydkc1f8tb" path="res://scenes/time_progress_bar.gd" id="3_8txj0"]
 [ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit.tscn" id="5_cow7c"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
+[ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="10_8txj0"]
 [ext_resource type="Script" uid="uid://ce1gy7bactc6b" path="res://components/bullet_manager.gd" id="10_704g2"]
+[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="10_s3v2u"]
 [ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://scenes/win_popup.tscn" id="10_v5q41"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="11_8txj0"]
 [ext_resource type="PackedScene" uid="uid://k07np4o6ppx" path="res://scenes/board_tile_map_layer.tscn" id="11_s3v2u"]
+[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="12_h03sj"]
 
-[sub_resource type="Resource" id="Resource_3maf5"]
-script = ExtResource("2_k1abw")
-health = 15
-animated_texture_frames = ExtResource("2_bj8vm")
-metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x285y"]
+bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hgse7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv6w6"]
+bg_color = Color(0.24716693, 0.7151115, 0, 1)
 
-[sub_resource type="Animation" id="Animation_5x5fn"]
-length = 0.13333334
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss/AnimatedSprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3v2u"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s3v2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
-[sub_resource type="Animation" id="Animation_bj8vm"]
-resource_name = "new_animation"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss/AnimatedSprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2, 0.23333333),
-"transitions": PackedFloat32Array(1, 2.639016, 2.7320821, 0.13397163),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 0.4), Vector2(0.9, 1.1), Vector2(1, 1)]
-}
+[sub_resource type="Gradient" id="Gradient_olled"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3955224)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_s60hn"]
-_data = {
-&"RESET": SubResource("Animation_5x5fn"),
-&"idle_bounce": SubResource("Animation_bj8vm")
-}
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qkmtv"]
+gradient = SubResource("Gradient_olled")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgse7"]
+[sub_resource type="Resource" id="Resource_h03sj"]
+script = ExtResource("10_8txj0")
+texture = SubResource("GradientTexture2D_qkmtv")
+damage = 2.5
+fly_time = 1.0
+metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"
 
-[node name="Level_Manager" type="Node" unique_id=503023504]
+[sub_resource type="Resource" id="Resource_8txj0"]
+script = ExtResource("11_8txj0")
+bullet = SubResource("Resource_h03sj")
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
+
+[sub_resource type="Resource" id="Resource_2t3te"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
+name = "uni1"
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
+animated_texture_frames = SubResource("SpriteFrames_s3v2u")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhn1i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s3v2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_jt70k"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
+name = "uni1"
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
+animated_texture_frames = SubResource("SpriteFrames_vhn1i")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l1ep3"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s3v2u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_blm44"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
+name = "uni1"
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
+animated_texture_frames = SubResource("SpriteFrames_l1ep3")
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[node name="Level_Manager" type="Node" unique_id=503023504 node_paths=PackedStringArray("boss")]
 script = ExtResource("1_ftccg")
+boss = NodePath("Boss")
 
-[node name="Boss" type="Area2D" parent="." unique_id=1731674239 groups=["enemy"]]
-modulate = Color(0.6457063, 0.19020623, 0, 1)
+[node name="Boss" parent="." unique_id=1872328963 instance=ExtResource("2_kq0y1")]
 position = Vector2(907, 299)
-collision_layer = 2
-script = ExtResource("1_3maf5")
-stats = SubResource("Resource_3maf5")
 
-[node name="Countdown" type="Timer" parent="Boss" unique_id=516587495]
-unique_name_in_owner = true
-autostart = true
+[node name="LevelTimer" type="Timer" parent="." unique_id=1620503169]
+one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss" unique_id=810237230]
-sprite_frames = SubResource("SpriteFrames_hgse7")
+[node name="TimeProgressBar" type="ProgressBar" parent="LevelTimer" unique_id=3649765 node_paths=PackedStringArray("timer")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 20.0
+offset_right = -76.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_x285y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yv6w6")
+value = 7.83
+show_percentage = false
+script = ExtResource("3_8txj0")
+timer = NodePath("..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boss" unique_id=315579128]
-active = false
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_s60hn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss" unique_id=1929922966]
-shape = SubResource("RectangleShape2D_hgse7")
-
-[node name="Label" type="Label" parent="." unique_id=1059429564]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("4_k1abw")
+[node name="Label" type="Label" parent="LevelTimer/TimeProgressBar" unique_id=1059429564]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="LosePopup" parent="." unique_id=804366258 instance=ExtResource("8_fxbef")]
 visible = false
@@ -101,14 +154,15 @@ player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("
 
 [node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 instance=ExtResource("5_cow7c")]
 position = Vector2(116, 13)
+stats = SubResource("Resource_2t3te")
 
 [node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 instance=ExtResource("5_cow7c")]
 position = Vector2(4, 73)
+stats = SubResource("Resource_jt70k")
 
 [node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 instance=ExtResource("5_cow7c")]
 position = Vector2(103, 97)
+stats = SubResource("Resource_blm44")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
 script = ExtResource("10_704g2")
-
-[connection signal="timeout" from="Boss/Countdown" to="." method="_on_countdown_timeout"]

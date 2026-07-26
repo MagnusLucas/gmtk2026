@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dl5epcybgax8k"]
+
+[ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://i am honestly not sure but dont wanna leave a mess/boss.gd" id="1_jncid"]
+[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="2_qnbj4"]
+[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://data/boss_resource.gd" id="3_r3bxh"]
+
+[sub_resource type="Resource" id="Resource_3maf5"]
+script = ExtResource("3_r3bxh")
+health = 15
+animated_texture_frames = ExtResource("2_qnbj4")
+metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgse7"]
+
+[sub_resource type="Animation" id="Animation_5x5fn"]
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bj8vm"]
+resource_name = "new_animation"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss/AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2, 0.23333333),
+"transitions": PackedFloat32Array(1, 2.639016, 2.7320821, 0.13397163),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.4), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s60hn"]
+_data = {
+&"RESET": SubResource("Animation_5x5fn"),
+&"idle_bounce": SubResource("Animation_bj8vm")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgse7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.6, 0.02745098, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[node name="Boss" type="Area2D" unique_id=1872328963 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_jncid")
+stats = SubResource("Resource_3maf5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1443914837]
+modulate = Color(0.64705884, 0.19215687, 0, 1)
+sprite_frames = SubResource("SpriteFrames_hgse7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1538913439]
+active = false
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_s60hn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=905721456]
+shape = SubResource("RectangleShape2D_hgse7")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=76022076]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -87.0
+offset_right = 100.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_g4v7s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yf5fn")
+value = 50.0
+show_percentage = false
