@@ -59,11 +59,12 @@ func animate_inward(delta: float) -> void:
 
 
 func set_signal(has_tile_signal: bool) -> void:
-	for i in range(1, 4):
-		if has_tile_signal:
+	if has_tile_signal:
+		for i in range(1, 4):
 			_set_point_start(i)
-		else:
-			_set_point_end(4 - i)
+	else:
+		for i in range (3, 0, -1):
+			_set_point_end(i)
 
 
 func _set_point_start(point: int) -> void:
@@ -72,5 +73,5 @@ func _set_point_start(point: int) -> void:
 
 
 func _set_point_end(point: int) -> void:
-	var point_offset := signal_size_relative / 2 * point
+	var point_offset := signal_size_relative / 2 * (3 - point)
 	gradient.set_offset(point, 1 - MINIMUM_POINT_DISTANCE - point_offset)

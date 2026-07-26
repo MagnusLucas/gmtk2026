@@ -9,6 +9,7 @@ const REVERSE_DIRECTION: Dictionary[OurTileData.Side, OurTileData.Side] = {
 }
 
 signal signal_created(tile_position: Vector2i, tile_signal: TileSignal)
+signal signal_died(tile_position: Vector2i)
 
 static var Instance: SignalManager
 
@@ -38,12 +39,15 @@ func create_signal(signal_position: Vector2i, source :OurTileData.Side,
 		perfect_time_seconds)
 	
 	active_signals[signal_position] = tile_signal
-	tile_signal.died.connect(
-		func(): active_signals.erase(signal_position)
-		,CONNECT_ONE_SHOT)
+	tile_signal.died.connect(_on_signal_died.bind(signal_position),CONNECT_ONE_SHOT)
 	
 	signal_created.emit(signal_position, tile_signal)
 	return tile_signal
+
+
+func _on_signal_died(coords: Vector2i) -> void:
+	active_signals.erase(coords)
+	signal_died.emit(coords)
 
 
 func get_signal_strength(coordinates: Vector2i) -> float:
@@ -122,3 +126,6 @@ func spread_signal(signal_position: Vector2i) -> void:
 		active_signals[neighbour_position] = create_signal(
 			neighbour_position, REVERSE_DIRECTION[side],
 			new_signal_strength, signal_to_spread.perfect_seconds())
+	
+	active_signals[signal_position].died.disconnect(_on_signal_died)
+	active_signals.erase(signal_position)

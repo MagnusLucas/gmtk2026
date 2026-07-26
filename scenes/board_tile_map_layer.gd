@@ -33,6 +33,7 @@ func _ready() -> void:
 	set_emitter(EMITTER_POSITION)
 	
 	signal_manager.signal_created.connect(_on_signal_created)
+	signal_manager.signal_died.connect(_on_signal_died)
 	
 	for player_unit in player_unit_arr:
 		var unit_map_position := local_to_map(player_unit.position)
@@ -57,6 +58,10 @@ func set_emitter(target_position: Vector2i) -> void:
 
 func _on_emitter_signal_created(time_seconds: float, coords: Vector2i, tile_data: OurTileData) -> void:
 	SignalManager.Instance.spread_emitter_signal(coords, tile_data, time_seconds)
+
+
+func _on_signal_died(coords: Vector2i) -> void:
+	tile_dict[coords].remove_signal()
 
 
 func set_tile(tile: Tile, target_position: Vector2i) -> void:

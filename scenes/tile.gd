@@ -53,6 +53,11 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				set_signal(false)
 
 
+func remove_signal() -> void:
+	animating = false
+	(sprite_2d.texture as SignalTexture).set_signal(false)
+
+
 func set_marked(marked: bool) -> void:
 	line_2d.visible = marked
 
