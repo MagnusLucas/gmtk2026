@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dl5epcybgax8k" path="res://scenes/boss.tscn" id="2_kq0y1"]
 [ext_resource type="Script" uid="uid://qufydkc1f8tb" path="res://scenes/time_progress_bar.gd" id="3_8txj0"]
 [ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit.tscn" id="5_cow7c"]
+[ext_resource type="Texture2D" uid="uid://b8iml1a6ngmdi" path="res://assets/grafiki/cat_tile_off.png" id="8_2t3te"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
-[ext_resource type="Resource" uid="uid://braw15v4gvsyu" path="res://assets/cat.tres" id="8_h03sj"]
-[ext_resource type="Texture2D" uid="uid://dchlm7hjhbm5r" path="res://assets/grafiki/moth_tile_off.png" id="9_vhn1i"]
+[ext_resource type="Texture2D" uid="uid://c6hgvhm43gj6q" path="res://assets/grafiki/cat_tile_on.png" id="9_vhn1i"]
 [ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="10_8txj0"]
 [ext_resource type="Script" uid="uid://ce1gy7bactc6b" path="res://components/bullet_manager.gd" id="10_704g2"]
 [ext_resource type="Texture2D" uid="uid://hy40q3optiem" path="res://assets/grafiki/moth_tile_on.png" id="10_jt70k"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="11_8txj0"]
 [ext_resource type="PackedScene" uid="uid://k07np4o6ppx" path="res://scenes/board_tile_map_layer.tscn" id="11_s3v2u"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="12_h03sj"]
+[ext_resource type="Texture2D" uid="uid://dchlm7hjhbm5r" path="res://assets/grafiki/moth_tile_off.png" id="13_l1ep3"]
 [ext_resource type="Texture2D" uid="uid://dr4kmlbbwnlhk" path="res://assets/grafiki/shrimp_tile_off.png" id="14_jt70k"]
 [ext_resource type="Texture2D" uid="uid://yi2y2ocyil0" path="res://assets/grafiki/shrimp_tile_on.png" id="15_l1ep3"]
 [ext_resource type="Texture2D" uid="uid://nsoe7ph66b0x" path="res://assets/grafiki/shrimp_bullet.png" id="15_vhn1i"]
@@ -24,11 +25,51 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv6w6"]
 bg_color = Color(0.24716693, 0.7151115, 0, 1)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_x285y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_2t3te")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vhn1i")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_851ce"]
+load_path = "res://.godot/imported/cat_bullet.png-86fa92bb49989e37e6c904fd78d5056e.ctex"
+
+[sub_resource type="Resource" id="Resource_blq0i"]
+script = ExtResource("10_8txj0")
+texture = SubResource("CompressedTexture2D_851ce")
+damage = 2.5
+fly_time = 1.0
+metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"
+
+[sub_resource type="Resource" id="Resource_ifhnx"]
+script = ExtResource("11_8txj0")
+dmg_per_bullet = 1.0
+bullet_amount = 1
+bullet = SubResource("Resource_blq0i")
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
+
+[sub_resource type="Resource" id="Resource_blm44"]
+resource_local_to_scene = true
+script = ExtResource("12_h03sj")
+name = "cat"
+attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_ifhnx")])
+animated_texture_frames = SubResource("SpriteFrames_x285y")
+combo_cooldown_time = 30
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhn1i"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_vhn1i")
+"texture": ExtResource("13_l1ep3")
 }, {
 "duration": 1.0,
 "texture": ExtResource("10_jt70k")
@@ -89,11 +130,11 @@ metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"
 [sub_resource type="Resource" id="Resource_8txj0"]
 script = ExtResource("11_8txj0")
 dmg_per_bullet = 1.0
-bullet_amount = 1
+bullet_amount = 3
 bullet = SubResource("Resource_h03sj")
 metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
-[sub_resource type="Resource" id="Resource_blm44"]
+[sub_resource type="Resource" id="Resource_6rjg5"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "shrimp"
@@ -154,7 +195,7 @@ player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("
 
 [node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(116, 13)
-stats = ExtResource("8_h03sj")
+stats = SubResource("Resource_blm44")
 
 [node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(4, 73)
@@ -162,7 +203,7 @@ stats = SubResource("Resource_yv6w6")
 
 [node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(103, 97)
-stats = SubResource("Resource_blm44")
+stats = SubResource("Resource_6rjg5")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
 script = ExtResource("10_704g2")
