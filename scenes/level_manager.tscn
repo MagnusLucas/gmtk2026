@@ -33,7 +33,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv6w6"]
 bg_color = Color(0.24716693, 0.7151115, 0, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_blm44"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2t3te"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -71,16 +71,16 @@ bullet_amount = 1
 bullet = SubResource("Resource_h03sj")
 metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
-[sub_resource type="Resource" id="Resource_x285y"]
+[sub_resource type="Resource" id="Resource_vhn1i"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "uni1"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
-animated_texture_frames = SubResource("SpriteFrames_blm44")
+animated_texture_frames = SubResource("SpriteFrames_2t3te")
 combo_cooldown_time = 30
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yv6w6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jt70k"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -92,17 +92,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_6rjg5"]
+[sub_resource type="Resource" id="Resource_blm44"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "uni2"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
-animated_texture_frames = SubResource("SpriteFrames_yv6w6")
+animated_texture_frames = SubResource("SpriteFrames_jt70k")
 combo_cooldown_time = 30
 combo_index = 0
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8mqla"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_x285y"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -114,12 +114,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_6p75p"]
+[sub_resource type="Resource" id="Resource_yv6w6"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "uni3"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
-animated_texture_frames = SubResource("SpriteFrames_8mqla")
+animated_texture_frames = SubResource("SpriteFrames_x285y")
 combo_cooldown_time = 30
 combo_index = -1
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
@@ -175,15 +175,15 @@ position = Vector2(180, 149)
 
 [node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(116, 13)
-stats = SubResource("Resource_x285y")
+stats = SubResource("Resource_vhn1i")
 
 [node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(4, 73)
-stats = SubResource("Resource_6rjg5")
+stats = SubResource("Resource_blm44")
 
 [node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(103, 97)
-stats = SubResource("Resource_6p75p")
+stats = SubResource("Resource_yv6w6")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
 script = ExtResource("10_704g2")

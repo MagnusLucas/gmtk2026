@@ -17,9 +17,15 @@ func _ready() -> void:
 	health = stats.health
 	_update_visuals()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action("ui_down"):
+func _process(delta: float) -> void:
+	if (is_equal_approx($"../LevelTimer".time_left, $"../LevelTimer".wait_time *2/3)) || is_equal_approx($"../LevelTimer".time_left,$"../LevelTimer".wait_time *1/3):
 		stats.attacks[0].attack(get_tree().get_nodes_in_group('player_units'))
+
+
+
+#func _input(event: InputEvent) -> void:
+	#if event.is_action("ui_down"):
+		#stats.attacks[0].attack(get_tree().get_nodes_in_group('player_units'))
 
 func take_damage(amount: float) -> void:
 	health -= amount
