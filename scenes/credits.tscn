@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bd3chjl07hshx"]
 
+[ext_resource type="Script" uid="uid://dci0tvv5kwa7q" path="res://scenes/credits.gd" id="1_0bpdh"]
+
 [node name="Credits" type="Control" unique_id=1934721269]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0bpdh")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1672638214]
 layout_mode = 1
@@ -76,3 +79,5 @@ text = "go back"
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer2" unique_id=1328088987]
 layout_mode = 2
 size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer2/Back" to="." method="_on_back_pressed"]
