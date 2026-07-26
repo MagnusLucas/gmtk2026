@@ -4,6 +4,7 @@ extends Node2D
 const PACKED_BULLET = preload("res://scenes/bullet.tscn")
 
 @export var stats: UnitAttributes
+@export var unit_sprite: PlayerUnitSprite
 
 var target: Node2D
 var bullets_to_spawn := 0
@@ -43,7 +44,7 @@ func attack(attack_strength_modifier: float = 1):
 
 
 func _on_timer_timeout() -> void:
-	BulletManager.Instance.spawn_bullet(active_attack.bullet, global_position,
+	BulletManager.Instance.spawn_bullet(active_attack.bullet, unit_sprite.bullet_spawn_point.global_position,
 		target, strength_modifier*active_combo_modifier)
 	bullets_to_spawn -= 1
 	if bullets_to_spawn == 0:

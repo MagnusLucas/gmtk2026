@@ -10,3 +10,6 @@ class_name UnitAttributes
 @export var combo_cooldown_time := 1 
 @export var combo_index := 1
 @export var combo_multiplier := 2
+
+
+var bullet_spawn_point: Vector2
