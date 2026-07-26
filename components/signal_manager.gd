@@ -52,6 +52,37 @@ func get_signal_strength(coordinates: Vector2i) -> float:
 	return active_signals[coordinates].calculate_strength()
 
 
+func spread_emitter_signal(emitter_position: Vector2i, emitter_data: OurTileData,
+		perfect_time: float) -> void:
+	var new_signal_strength := 1.0
+	
+	for side: OurTileData.Side in emitter_data.connections.keys():
+		var neighbour_position = emitter_position + OurTileData.SIDE_TO_VECTOR[side]
+		
+		if !board.set_tiles.has(neighbour_position):
+			# No tile set there
+			continue
+		
+		var neighbour := board.set_tiles[neighbour_position]
+		
+		if !neighbour.connections.has(REVERSE_DIRECTION[side]):
+			# Tiles are not connected
+			continue
+		
+		if active_signals.has(neighbour_position):
+			# Remove the other signal maybe?
+			print("has signal! omitting")
+			continue
+		
+		# This doesn't account for players being unable (skill issued)
+		# to click two tiles at the same time! TODO TODO
+		
+		# Also for world boundries. Although this doesn't matter much i suppose
+		active_signals[neighbour_position] = create_signal(
+			neighbour_position, REVERSE_DIRECTION[side],
+			new_signal_strength, perfect_time)
+
+
 func spread_signal(signal_position: Vector2i) -> void:
 	if !active_signals.has(signal_position):
 		return

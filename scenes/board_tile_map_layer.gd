@@ -56,13 +56,7 @@ func set_emitter(target_position: Vector2i) -> void:
 
 
 func _on_emitter_signal_created(time_seconds: float, coords: Vector2i, tile_data: OurTileData) -> void:
-	for side in tile_data.connections:
-		SignalManager.Instance.create_signal(
-			coords + OurTileData.SIDE_TO_VECTOR[side],
-			SignalManager.REVERSE_DIRECTION[side],
-			1.0,
-			time_seconds
-		)
+	SignalManager.Instance.spread_emitter_signal(coords, tile_data, time_seconds)
 
 
 func set_tile(tile: Tile, target_position: Vector2i) -> void:
