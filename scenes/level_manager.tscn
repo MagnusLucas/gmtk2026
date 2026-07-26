@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://db210udx0pgua" path="res://i am honestly not sure but dont wanna leave a mess/level_manager.gd" id="1_ftccg"]
 [ext_resource type="PackedScene" uid="uid://dl5epcybgax8k" path="res://scenes/boss.tscn" id="2_kq0y1"]
 [ext_resource type="Script" uid="uid://qufydkc1f8tb" path="res://scenes/time_progress_bar.gd" id="3_8txj0"]
-[ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit_sprite.tscn" id="5_cow7c"]
+[ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit_sprite.tscn" id="7_2t3te"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
 [ext_resource type="Resource" uid="uid://braw15v4gvsyu" path="res://assets/cat.tres" id="8_h03sj"]
 [ext_resource type="Script" uid="uid://ce1gy7bactc6b" path="res://components/bullet_manager.gd" id="10_704g2"]
@@ -69,22 +69,21 @@ visible = false
 
 [node name="BoardTileMapLayer" parent="." unique_id=1549379355 node_paths=PackedStringArray("player_unit_arr") instance=ExtResource("11_s3v2u")]
 position = Vector2(180, 149)
-player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("Player_Unit3")]
+player_unit_arr = [NodePath("PlayerUnitIcon"), NodePath("PlayerUnitIcon2"), NodePath("PlayerUnitIcon3")]
 
-[node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("5_cow7c")]
-position = Vector2(116, 13)
-stats = ExtResource("8_h03sj")
-unit_sprite = NodePath("../../PlayerUnitSprite")
+[node name="PlayerUnitIcon" parent="BoardTileMapLayer" unique_id=713205843 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
+stats = ExtResource("14_2t3te")
+unit_sprite = NodePath("../../PlayerUnitSprite3")
 
-[node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("5_cow7c")]
-position = Vector2(4, 73)
+[node name="PlayerUnitIcon2" parent="BoardTileMapLayer" unique_id=676615226 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
+position = Vector2(83, 59)
 stats = ExtResource("22_8mqla")
 unit_sprite = NodePath("../../PlayerUnitSprite2")
 
-[node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("5_cow7c")]
-position = Vector2(103, 97)
-stats = ExtResource("14_2t3te")
-unit_sprite = NodePath("../../PlayerUnitSprite3")
+[node name="PlayerUnitIcon3" parent="BoardTileMapLayer" unique_id=1530738815 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
+position = Vector2(25, 145)
+stats = ExtResource("8_h03sj")
+unit_sprite = NodePath("../../PlayerUnitSprite")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
 script = ExtResource("10_704g2")

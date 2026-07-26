@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c4esl5m6hep" path="res://i am honestly not sure but dont wanna leave a mess/boss.gd" id="1_jncid"]
 [ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="2_qnbj4"]
+[ext_resource type="Script" uid="uid://ctosybi1n4o6k" path="res://data/boss_attack_resource.gd" id="3_qnbj4"]
 [ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://data/boss_resource.gd" id="3_r3bxh"]
+
+[sub_resource type="Resource" id="Resource_2t3te"]
+script = ExtResource("3_qnbj4")
+metadata/_custom_type_script = "uid://ctosybi1n4o6k"
 
 [sub_resource type="Resource" id="Resource_3maf5"]
 script = ExtResource("3_r3bxh")
 health = 15
+attacks = Array[ExtResource("3_qnbj4")]([SubResource("Resource_2t3te")])
 animated_texture_frames = ExtResource("2_qnbj4")
 metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
 

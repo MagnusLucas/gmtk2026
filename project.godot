@@ -24,6 +24,10 @@ buses/default_bus_layout="uid://bcwnquerwf4bq"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+player_units=""
+
 [input]
 
 ui_cancel={

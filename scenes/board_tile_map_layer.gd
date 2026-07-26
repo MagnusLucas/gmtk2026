@@ -34,7 +34,9 @@ func _ready() -> void:
 	
 	signal_manager.signal_created.connect(_on_signal_created)
 	signal_manager.signal_died.connect(_on_signal_died)
-	
+	set_players_on_board()
+
+func set_players_on_board():
 	for player_unit in player_unit_arr:
 		var unit_map_position := local_to_map(player_unit.position)
 		if !board.is_point_in_bounds(unit_map_position):
@@ -42,6 +44,7 @@ func _ready() -> void:
 			continue
 		board.unit_attributes_dict[unit_map_position] = player_unit.stats
 		player_unit.position = map_to_local(unit_map_position)
+		player_unit.expected_position = player_unit.position
 		units[unit_map_position] = player_unit
 
 
