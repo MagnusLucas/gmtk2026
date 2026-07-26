@@ -14,7 +14,6 @@ var active_combo_modifier:= 1
 @onready var bullet_spawn_interval_timer: Timer = $BulletSpawnIntervalTimer
 
 
-
 func _ready() -> void:
 	$ComboTimer.wait_time = stats.combo_cooldown_time
 	$AnimatedSprite2D.sprite_frames = stats.animated_texture_frames
