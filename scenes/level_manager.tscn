@@ -73,14 +73,17 @@ player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("
 
 [node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(116, 13)
+stats = ExtResource("8_h03sj")
 unit_sprite = NodePath("../../PlayerUnitSprite")
 
 [node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(4, 73)
+stats = ExtResource("22_8mqla")
 unit_sprite = NodePath("../../PlayerUnitSprite2")
 
 [node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(103, 97)
+stats = ExtResource("14_2t3te")
 unit_sprite = NodePath("../../PlayerUnitSprite3")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
