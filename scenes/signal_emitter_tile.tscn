@@ -89,3 +89,5 @@ texture_progress = SubResource("GradientTexture2D_230gs")
 
 [node name="Timer" type="Timer" parent="." unique_id=1751668148]
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1373690156]

@@ -15,6 +15,7 @@ var time_since_last_clicked := 0.0
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 @onready var timer: Timer = $Timer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 static func new_emitter(our_tile_data: OurTileData) -> SignalEmitterTile:
@@ -76,6 +77,8 @@ func _on_clicked() -> void:
 		animating = true
 		signal_created.emit(time_since_last_clicked)
 	else:
+		audio_stream_player.stream = Beat.next_audio()
+		audio_stream_player.play()
 		set_marked(true)
 		(sprite_2d.texture as SignalTexture).set_signal(true)
 	time_since_last_clicked = 0
