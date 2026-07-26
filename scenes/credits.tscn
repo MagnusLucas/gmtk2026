@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bd3chjl07hshx"]
+
+[ext_resource type="Script" uid="uid://dci0tvv5kwa7q" path="res://scenes/credits.gd" id="1_0bpdh"]
+
+[node name="Credits" type="Control" unique_id=1934721269]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bpdh")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1672638214]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_right = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer2" unique_id=846711725]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label4" type="Label" parent="VBoxContainer2" unique_id=958592053]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 64
+text = "a thingy made by:"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2" unique_id=1719951631]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=450835402]
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer2/HBoxContainer" unique_id=1594648449]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=1803444912]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1928672884]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "gnaw"
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=181261904]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "retrograde"
+
+[node name="Label3" type="Label" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=472772880]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "zapzap"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2" unique_id=1326413428]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="VBoxContainer2" unique_id=492476030]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "go back"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer2" unique_id=1328088987]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer2/Back" to="." method="_on_back_pressed"]

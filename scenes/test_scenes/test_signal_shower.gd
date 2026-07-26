@@ -1,7 +1,7 @@
 class_name TestSignalShower
 extends Sprite2D
 
-const TEST_SIGNAL_SHOWER = preload("uid://njn23n5efma6")
+const TEST_SIGNAL_SHOWER = preload("res://scenes/test_scenes/test_signal_shower.tscn")
 
 var tile_signal: TileSignal
 
