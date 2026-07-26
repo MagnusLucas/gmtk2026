@@ -49,3 +49,6 @@ scale = Vector2(0.185, 0.185)
 sprite_frames = ExtResource("2_olled")
 
 [node name="BulletSpawnIntervalTimer" type="Timer" parent="." unique_id=161439932]
+
+[node name="ComboTimer" type="Timer" parent="." unique_id=572814845]
+one_shot = true
