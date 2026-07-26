@@ -38,14 +38,13 @@ attacks = Array[ExtResource("3_qkmtv")]([SubResource("Resource_8txj0")])
 animated_texture_frames = ExtResource("2_olled")
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[node name="Player_Unit" type="Node2D" unique_id=713205843]
-modulate = Color(0, 1, 0.7176471, 1)
+[node name="PlayerUnitIcon" type="Node2D" unique_id=713205843]
 script = ExtResource("1_bv0iy")
 stats = SubResource("Resource_bj8vm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=218183732]
 position = Vector2(12, 13)
-scale = Vector2(0.185, 0.185)
+scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("2_olled")
 
 [node name="BulletSpawnIntervalTimer" type="Timer" parent="." unique_id=161439932]

@@ -88,6 +88,9 @@ func spread_emitter_signal(emitter_position: Vector2i, emitter_data: OurTileData
 		active_signals[neighbour_position] = create_signal(
 			neighbour_position, REVERSE_DIRECTION[side],
 			new_signal_strength, beat)
+	
+	if beat.signals.is_empty():
+		beat.died.emit()
 
 
 func spread_signal(signal_position: Vector2i) -> void:

@@ -1,13 +1,17 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://bo6e32el8xevx"]
 
-[ext_resource type="Texture2D" uid="uid://ciuxyaoktugh5" path="res://icon.svg" id="1_v6d71"]
+[ext_resource type="Texture2D" uid="uid://bh5pilfft402m" path="res://assets/grafiki/buff_demon_king.png" id="1_hqv0k"]
+[ext_resource type="Texture2D" uid="uid://c7romkw5b8db0" path="res://assets/grafiki/buff_demon_king_angy.png" id="2_x282n"]
 
 [resource]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_v6d71")
+"texture": ExtResource("1_hqv0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x282n")
 }],
 "loop": 1,
 "name": &"default",
