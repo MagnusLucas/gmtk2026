@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dlpot855rydac"]
+
+[ext_resource type="Script" uid="uid://c56d5knkq7hq" path="res://scenes/beat_player.gd" id="1_vtuui"]
+
+[node name="BeatPlayer" type="AudioStreamPlayer" unique_id=550519590]
+script = ExtResource("1_vtuui")
+
+[node name="Timer" type="Timer" parent="." unique_id=973581582]

@@ -9,6 +9,7 @@ var source: OurTileData.Side
 
 var wait_time: int
 var strength: float
+var beat: Beat
 
 var birth_time: int
 
@@ -16,11 +17,14 @@ const MILISECONDS_IN_SECOND := 1000
 
 
 func _init(source_side: OurTileData.Side, signal_strength: float,
-		perfect_wait_time_seconds: float) -> void:
+		a_beat: Beat) -> void:
+	beat = a_beat
 	strength = signal_strength
 	source = source_side
-	wait_time = int(perfect_wait_time_seconds * MILISECONDS_IN_SECOND)
+	wait_time = int(beat.interval * MILISECONDS_IN_SECOND)
 	birth_time = Time.get_ticks_msec()
+	beat.add_signal(self)
+	died.connect(beat.remove_signal.bind(self))
 
 
 func time_to_live() -> int:

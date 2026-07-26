@@ -31,12 +31,12 @@ func _process(_delta: float) -> void:
 
 
 func create_signal(signal_position: Vector2i, source :OurTileData.Side,
-			strength: float, perfect_time_seconds: float) -> TileSignal:
+			strength: float, beat: Beat) -> TileSignal:
 	
 	var tile_signal := TileSignal.new(
 		source,
 		strength,
-		perfect_time_seconds)
+		beat)
 	
 	active_signals[signal_position] = tile_signal
 	tile_signal.died.connect(_on_signal_died.bind(signal_position),CONNECT_ONE_SHOT)
@@ -59,6 +59,9 @@ func get_signal_strength(coordinates: Vector2i) -> float:
 func spread_emitter_signal(emitter_position: Vector2i, emitter_data: OurTileData,
 		perfect_time: float) -> void:
 	var new_signal_strength := 1.0
+	
+	var beat := Beat.new(perfect_time)
+	add_child(BeatPlayer.custom_new(beat))
 	
 	for side: OurTileData.Side in emitter_data.connections.keys():
 		var neighbour_position = emitter_position + OurTileData.SIDE_TO_VECTOR[side]
@@ -84,7 +87,7 @@ func spread_emitter_signal(emitter_position: Vector2i, emitter_data: OurTileData
 		# Also for world boundries. Although this doesn't matter much i suppose
 		active_signals[neighbour_position] = create_signal(
 			neighbour_position, REVERSE_DIRECTION[side],
-			new_signal_strength, perfect_time)
+			new_signal_strength, beat)
 
 
 func spread_signal(signal_position: Vector2i) -> void:
@@ -125,7 +128,8 @@ func spread_signal(signal_position: Vector2i) -> void:
 		# Also for world boundries. Although this doesn't matter much i suppose
 		active_signals[neighbour_position] = create_signal(
 			neighbour_position, REVERSE_DIRECTION[side],
-			new_signal_strength, signal_to_spread.perfect_seconds())
+			new_signal_strength, signal_to_spread.beat)
 	
 	active_signals[signal_position].died.disconnect(_on_signal_died)
+	active_signals[signal_position].beat.remove_signal(active_signals[signal_position])
 	active_signals.erase(signal_position)
