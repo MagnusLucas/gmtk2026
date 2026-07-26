@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="OurTileData" format=3 uid="uid://c6ks63mdpjw26"]
+
+[ext_resource type="Script" uid="uid://cmdcpiwc4qcvs" path="res://data/our_tile_data/our_tile_data.gd" id="1_hehfn"]
+
+[resource]
+script = ExtResource("1_hehfn")
+connections = Dictionary[int, bool]({
+2: false
+})
+metadata/_custom_type_script = "uid://cmdcpiwc4qcvs"

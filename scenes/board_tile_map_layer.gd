@@ -7,9 +7,12 @@ extends TileMapLayer
 @onready var signal_manager: SignalManager = $SignalManager
 @onready var tile_swapper: TileSwapper = $TileSwapper
 
+const EMITTER_POSITION := Vector2i(-1, 0)
+
 const CROSS_WIRE = preload("uid://cv5ftp81ddrmr")
 const TOP_LEFT = preload("uid://duikbvl75hybn")
 const TOP_RIGHT = preload("uid://bipschdun40ay")
+const RIGHT_WIRE = preload("uid://c6ks63mdpjw26")
 
 var tile_data_array: Array[OurTileData] = [CROSS_WIRE, TOP_LEFT, TOP_RIGHT]
 var tile_dict: Dictionary[Vector2i, Tile]
@@ -26,8 +29,10 @@ func _ready() -> void:
 	for i in board.size.x:
 		for j in board.size.y:
 			set_tile(Tile.new_tile(random_tile_data()), Vector2i(i, j))
+	
+	set_emitter(EMITTER_POSITION)
+	
 	signal_manager.signal_created.connect(_on_signal_created)
-	signal_manager.create_signal(Vector2i.ZERO, OurTileData.Side.TOP, 1.0, 3.0)
 	
 	for player_unit in player_unit_arr:
 		var unit_map_position := local_to_map(player_unit.position)
@@ -41,6 +46,23 @@ func _ready() -> void:
 
 func random_tile_data() -> OurTileData:
 	return tile_data_array.pick_random()
+
+
+func set_emitter(target_position: Vector2i) -> void:
+	var emitter := SignalEmitterTile.new_emitter(RIGHT_WIRE)
+	add_child(emitter)
+	emitter.position = map_to_local(target_position)
+	emitter.signal_created.connect(_on_emitter_signal_created.bind(target_position, emitter.tile_data))
+
+
+func _on_emitter_signal_created(time_seconds: float, coords: Vector2i, tile_data: OurTileData) -> void:
+	for side in tile_data.connections:
+		SignalManager.Instance.create_signal(
+			coords + OurTileData.SIDE_TO_VECTOR[side],
+			SignalManager.REVERSE_DIRECTION[side],
+			1.0,
+			time_seconds
+		)
 
 
 func set_tile(tile: Tile, target_position: Vector2i) -> void:
@@ -59,8 +81,7 @@ func _on_signal_created(tile_position: Vector2i, tile_signal: TileSignal) -> voi
 	var test := TestSignalShower.from_signal(tile_signal)
 	add_child(test)
 	test.position = map_to_local(tile_position)
-	tile_dict[tile_position].receiving_signal = true
-	tile_dict[tile_position].animating = true
+	tile_dict[tile_position].set_signal(true)
 
 
 # This should be a unit manager :v TODO

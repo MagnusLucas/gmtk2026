@@ -1,21 +1,24 @@
-class_name Tile
+class_name SignalEmitterTile
 extends Area2D
 
-signal left_clicked
-signal right_clicked
+const SIGNAL_EMITTER_TILE = preload("uid://cs0cmi3cu3fio")
 
-const TILE = preload("uid://dxifl4lqvcmsr")
+signal signal_created(beat_time: float)
+
+@export var tile_data: OurTileData : set = set_tile_data
+
+var animating := false
+var is_marked := false
+var time_since_last_clicked := 0.0
+
 @onready var line_2d: Line2D = $Line2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
-var tile_data: OurTileData
-var animating := false
-var receiving_signal := false
-var has_tile_signal := false
+@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
+@onready var timer: Timer = $Timer
 
 
-static func new_tile(our_tile_data: OurTileData) -> Tile:
-	var tile: Tile = TILE.instantiate()
+static func new_emitter(our_tile_data: OurTileData) -> SignalEmitterTile:
+	var tile: SignalEmitterTile = SIGNAL_EMITTER_TILE.instantiate()
 	tile.set_tile_data(our_tile_data)
 	return tile
 
@@ -24,19 +27,21 @@ static func new_tile(our_tile_data: OurTileData) -> Tile:
 func _ready() -> void:
 	input_event.connect(_on_input_event)
 	var signal_texture := SignalTexture.new()
+	signal_texture.signal_colour = Color("008b00")
 	sprite_2d.texture = signal_texture
 	signal_texture.animation_finished.connect(
-		func(): animating = false
+		func(): 
+			animating = false
 	)
-	set_signal(false)
+	signal_texture.set_signal(false)
 
 
 func _process(delta: float) -> void:
+	time_since_last_clicked += delta
 	if animating:
-		if receiving_signal:
-			sprite_2d.texture.animate_inward(delta)
-		else:
-			sprite_2d.texture.animate_outward(delta)
+		sprite_2d.texture.animate_outward(delta)
+	if is_marked:
+		texture_progress_bar.value = timer.time_left / timer.wait_time
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -44,24 +49,17 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		var mouse_button_event := event as InputEventMouseButton
 		if !mouse_button_event.pressed:
 			return
-		if mouse_button_event.button_index == MOUSE_BUTTON_LEFT:
-			left_clicked.emit()
-			return
 		if mouse_button_event.button_index == MOUSE_BUTTON_RIGHT:
-			right_clicked.emit()
-			if has_tile_signal:
-				set_signal(false)
+			_on_clicked()
+			return
 
 
 func set_marked(marked: bool) -> void:
+	is_marked = marked
 	line_2d.visible = marked
-
-
-func set_signal(received: bool) -> void:
-	animating = true
-	receiving_signal = received
-	has_tile_signal = received
-	#(sprite_2d.texture as SignalTexture).set_signal(has_tile_signal)
+	texture_progress_bar.visible = marked
+	if marked:
+		timer.start()
 
 
 func set_tile_data(our_tile_data: OurTileData) -> void:
@@ -70,6 +68,17 @@ func set_tile_data(our_tile_data: OurTileData) -> void:
 		_update_visuals()
 	else:
 		ready.connect(_update_visuals, CONNECT_ONE_SHOT)
+
+
+func _on_clicked() -> void:
+	if is_marked:
+		set_marked(false)
+		animating = true
+		signal_created.emit(time_since_last_clicked)
+	else:
+		set_marked(true)
+		(sprite_2d.texture as SignalTexture).set_signal(true)
+	time_since_last_clicked = 0
 
 
 func _update_visuals() -> void:

@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cs0cmi3cu3fio"]
+
+[ext_resource type="Script" uid="uid://c3dslei3eaw0o" path="res://scenes/signal_emitter_tile.gd" id="1_7kmbh"]
+[ext_resource type="Shader" uid="uid://t57xkq3rqrus" path="res://assets/wires.gdshader" id="1_8j8et"]
+[ext_resource type="Script" uid="uid://c2sw1w06mgsd5" path="res://components/signal_texture.gd" id="2_7kmbh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jy7pm"]
+resource_local_to_scene = true
+shader = ExtResource("1_8j8et")
+shader_parameter/wire_wobbles = 6
+shader_parameter/wobble_relative_height = 0.04
+shader_parameter/wire_height = 0.04
+shader_parameter/left = true
+shader_parameter/right = true
+shader_parameter/top = true
+shader_parameter/bottom = true
+
+[sub_resource type="Gradient" id="Gradient_jy7pm"]
+offsets = PackedFloat32Array(0, 0.849, 0.899, 0.949, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54509807, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jy7pm"]
+gradient = SubResource("Gradient_jy7pm")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+script = ExtResource("2_7kmbh")
+signal_colour = Color(0, 0.54509807, 0, 1)
+metadata/_custom_type_script = "uid://c2sw1w06mgsd5"
+
+[sub_resource type="Gradient" id="Gradient_7kmbh"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.30120483, 0.37951806, 0.45783132)
+colors = PackedColorArray(0, 0, 0, 1, 0.01896693, 0.01896693, 0.018966928, 1, 0.23392546, 0.23392546, 0.23392543, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_7kmbh")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_aqdwq"]
+offsets = PackedFloat32Array(0, 0.3116883, 0.37012988)
+colors = PackedColorArray(0, 0.54509807, 0, 1, 0, 0.54509807, 0, 1, 0, 0.54509807, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_230gs"]
+gradient = SubResource("Gradient_aqdwq")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="SignalEmitterTile" type="Area2D" unique_id=508948405]
+script = ExtResource("1_7kmbh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=13322082]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1557859440]
+material = SubResource("ShaderMaterial_jy7pm")
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_jy7pm")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1582983497]
+visible = false
+points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+closed = true
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1149610980]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 32.0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 4
+texture_under = SubResource("GradientTexture2D_g4v7s")
+texture_progress = SubResource("GradientTexture2D_230gs")
+
+[node name="Timer" type="Timer" parent="." unique_id=1751668148]
+autostart = true
