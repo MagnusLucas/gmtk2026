@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="3_wc8s0"]
 [ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="4_co67l"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="6_5gcd8"]
+[ext_resource type="Texture2D" uid="uid://ysclnf0f1lkp" path="res://assets/grafiki/cat.png" id="6_blq0i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x285y"]
 animations = [{
@@ -43,5 +44,6 @@ script = ExtResource("6_5gcd8")
 name = "cat"
 attacks = Array[ExtResource("3_wc8s0")]([SubResource("Resource_ifhnx")])
 animated_texture_frames = SubResource("SpriteFrames_x285y")
+texture = ExtResource("6_blq0i")
 combo_cooldown_time = 30
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="4_jsnnw"]
 [ext_resource type="Texture2D" uid="uid://nsoe7ph66b0x" path="res://assets/grafiki/shrimp_bullet.png" id="5_m2n0e"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="6_krxmq"]
+[ext_resource type="Texture2D" uid="uid://ddw7or8ug7bus" path="res://assets/grafiki/shrimp.png" id="7_n2rqv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jt70k"]
 animations = [{
@@ -41,6 +42,7 @@ script = ExtResource("6_krxmq")
 name = "shrimp"
 attacks = Array[ExtResource("3_c5d3n")]([SubResource("Resource_8txj0")])
 animated_texture_frames = SubResource("SpriteFrames_jt70k")
+texture = ExtResource("7_n2rqv")
 combo_cooldown_time = 30
 combo_index = -1
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
