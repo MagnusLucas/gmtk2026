@@ -8,6 +8,7 @@ var health
 # - set of attacks that will change postitions of players????
 # - totalny countdown 
 @onready var progress_bar: ProgressBar = $ProgressBar
+var restarted := true 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,10 +18,14 @@ func _ready() -> void:
 	health = stats.health
 	_update_visuals()
 
-func _process(delta: float) -> void:
-	if (is_equal_approx($"../LevelTimer".time_left, $"../LevelTimer".wait_time *2/3)) || is_equal_approx($"../LevelTimer".time_left,$"../LevelTimer".wait_time *1/3):
-		stats.attacks[0].attack(get_tree().get_nodes_in_group('player_units'))
-
+func _process(_delta: float) -> void:
+	#print($"../LevelTimer".time_left,' ',int($"../LevelTimer".wait_time *2/3))
+	if (is_equal_approx(int($"../LevelTimer".time_left), int($"../LevelTimer".wait_time *2/3))) || is_equal_approx(int($"../LevelTimer".time_left),int($"../LevelTimer".wait_time *1/3)):
+		if restarted:
+			stats.attacks[0].attack(get_tree().get_nodes_in_group('player_units'))
+			restarted = false
+	else:
+		restarted = true
 
 
 #func _input(event: InputEvent) -> void:

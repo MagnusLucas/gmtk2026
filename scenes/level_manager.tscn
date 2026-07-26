@@ -5,7 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="3_2t3te"]
 [ext_resource type="Script" uid="uid://qufydkc1f8tb" path="res://scenes/time_progress_bar.gd" id="3_8txj0"]
 [ext_resource type="Script" uid="uid://ctosybi1n4o6k" path="res://data/boss_attack_resource.gd" id="4_vhn1i"]
-[ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit.tscn" id="5_cow7c"]
+[ext_resource type="PackedScene" uid="uid://cd141c27h37wi" path="res://scenes/player_unit/player_unit.tscn" id="5_cow7c"]
 [ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://data/boss_resource.gd" id="5_jt70k"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
 [ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="10_8txj0"]
