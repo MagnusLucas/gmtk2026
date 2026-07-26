@@ -52,6 +52,8 @@ metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"
 
 [sub_resource type="Resource" id="Resource_8txj0"]
 script = ExtResource("11_8txj0")
+dmg_per_bullet = 1.0
+bullet_amount = 1
 bullet = SubResource("Resource_h03sj")
 metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
@@ -61,6 +63,7 @@ script = ExtResource("12_h03sj")
 name = "uni1"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
 animated_texture_frames = SubResource("SpriteFrames_s3v2u")
+combo_cooldown_time = 30
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vhn1i"]
@@ -78,9 +81,11 @@ animations = [{
 [sub_resource type="Resource" id="Resource_jt70k"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
-name = "uni1"
+name = "uni2"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
 animated_texture_frames = SubResource("SpriteFrames_vhn1i")
+combo_cooldown_time = 30
+combo_index = 0
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l1ep3"]
@@ -98,9 +103,11 @@ animations = [{
 [sub_resource type="Resource" id="Resource_blm44"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
-name = "uni1"
+name = "uni3"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
 animated_texture_frames = SubResource("SpriteFrames_l1ep3")
+combo_cooldown_time = 30
+combo_index = -1
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
 [node name="Level_Manager" type="Node" unique_id=503023504 node_paths=PackedStringArray("boss")]
@@ -152,15 +159,15 @@ visible = false
 position = Vector2(180, 149)
 player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("Player_Unit3")]
 
-[node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 instance=ExtResource("5_cow7c")]
+[node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(116, 13)
 stats = SubResource("Resource_2t3te")
 
-[node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 instance=ExtResource("5_cow7c")]
+[node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(4, 73)
 stats = SubResource("Resource_jt70k")
 
-[node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 instance=ExtResource("5_cow7c")]
+[node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(103, 97)
 stats = SubResource("Resource_blm44")
 
