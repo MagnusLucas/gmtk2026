@@ -130,6 +130,5 @@ func spread_signal(signal_position: Vector2i) -> void:
 			neighbour_position, REVERSE_DIRECTION[side],
 			new_signal_strength, signal_to_spread.beat)
 	
-	active_signals[signal_position].died.disconnect(_on_signal_died)
+	#active_signals[signal_position].died.disconnect(_on_signal_died)
 	active_signals[signal_position].beat.remove_signal(active_signals[signal_position])
-	active_signals.erase(signal_position)
