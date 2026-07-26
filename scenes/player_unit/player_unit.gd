@@ -10,19 +10,29 @@ var bullets_to_spawn := 0
 var strength_modifier := 0.0
 var active_attack: AttackResource
 var active_combo_modifier:= 1
+var expected_position:Vector2
 
 @onready var bullet_spawn_interval_timer: Timer = $BulletSpawnIntervalTimer
 
-
+var settile : bool = false
 
 func _ready() -> void:
 	$ComboTimer.wait_time = stats.combo_cooldown_time
 	$AnimatedSprite2D.sprite_frames = stats.animated_texture_frames
 	bullet_spawn_interval_timer.timeout.connect(_on_timer_timeout)
+	expected_position = position
 
 # This setup will spawn bullets from new active attack if any are remaining,
 # but I don't think it'll be a problem in this project
 
+func _process(delta: float) -> void:
+	if position.distance_to(expected_position) > 1:
+		position = lerp(position, expected_position, 0.7)
+		settile = true
+	elif settile:
+		get_parent().set_players_on_board()
+		settile = false
+		
 func attack(attack_strength_modifier: float = 1):
 	strength_modifier = attack_strength_modifier
 	
@@ -56,3 +66,7 @@ func check_combo(combo_index_of_unit):
 		$ComboTimer.start()
 	else:
 		$ComboTimer.stop()
+		
+func get_attacked(x, y):
+	expected_position.x = x
+	expected_position.y = y

@@ -4,7 +4,7 @@ extends Resource
 @export var size: Vector2i
 
 var set_tiles: Dictionary[Vector2i, OurTileData]
-var unit_attributes_dict: Dictionary[Vector2i, UnitAttributes]
+@export var unit_attributes_dict: Dictionary[Vector2i, UnitAttributes]
 
 
 func is_point_in_bounds(coordinates: Vector2i) -> bool:

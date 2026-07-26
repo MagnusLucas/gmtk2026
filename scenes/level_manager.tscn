@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://db210udx0pgua" path="res://i am honestly not sure but dont wanna leave a mess/level_manager.gd" id="1_ftccg"]
 [ext_resource type="PackedScene" uid="uid://dl5epcybgax8k" path="res://scenes/boss.tscn" id="2_kq0y1"]
+[ext_resource type="SpriteFrames" uid="uid://bo6e32el8xevx" path="res://assets/placeholder_sprite_frames.tres" id="3_2t3te"]
 [ext_resource type="Script" uid="uid://qufydkc1f8tb" path="res://scenes/time_progress_bar.gd" id="3_8txj0"]
+[ext_resource type="Script" uid="uid://ctosybi1n4o6k" path="res://data/boss_attack_resource.gd" id="4_vhn1i"]
 [ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit.tscn" id="5_cow7c"]
+[ext_resource type="Script" uid="uid://dl6hh4bpjeyl7" path="res://data/boss_resource.gd" id="5_jt70k"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
 [ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="10_8txj0"]
 [ext_resource type="Script" uid="uid://ce1gy7bactc6b" path="res://components/bullet_manager.gd" id="10_704g2"]
@@ -13,13 +16,24 @@
 [ext_resource type="PackedScene" uid="uid://k07np4o6ppx" path="res://scenes/board_tile_map_layer.tscn" id="11_s3v2u"]
 [ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="12_h03sj"]
 
+[sub_resource type="Resource" id="Resource_m1b41"]
+script = ExtResource("4_vhn1i")
+metadata/_custom_type_script = "uid://ctosybi1n4o6k"
+
+[sub_resource type="Resource" id="Resource_l1ep3"]
+script = ExtResource("5_jt70k")
+health = 15
+attacks = Array[ExtResource("4_vhn1i")]([SubResource("Resource_m1b41")])
+animated_texture_frames = ExtResource("3_2t3te")
+metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x285y"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv6w6"]
 bg_color = Color(0.24716693, 0.7151115, 0, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_s3v2u"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_blm44"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -57,16 +71,16 @@ bullet_amount = 1
 bullet = SubResource("Resource_h03sj")
 metadata/_custom_type_script = "uid://rxqs4rh1xy0r"
 
-[sub_resource type="Resource" id="Resource_2t3te"]
+[sub_resource type="Resource" id="Resource_x285y"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "uni1"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
-animated_texture_frames = SubResource("SpriteFrames_s3v2u")
+animated_texture_frames = SubResource("SpriteFrames_blm44")
 combo_cooldown_time = 30
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vhn1i"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_yv6w6"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -78,17 +92,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_jt70k"]
+[sub_resource type="Resource" id="Resource_6rjg5"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "uni2"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
-animated_texture_frames = SubResource("SpriteFrames_vhn1i")
+animated_texture_frames = SubResource("SpriteFrames_yv6w6")
 combo_cooldown_time = 30
 combo_index = 0
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_l1ep3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mqla"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -100,12 +114,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_blm44"]
+[sub_resource type="Resource" id="Resource_6p75p"]
 resource_local_to_scene = true
 script = ExtResource("12_h03sj")
 name = "uni3"
 attacks = Array[ExtResource("11_8txj0")]([SubResource("Resource_8txj0")])
-animated_texture_frames = SubResource("SpriteFrames_l1ep3")
+animated_texture_frames = SubResource("SpriteFrames_8mqla")
 combo_cooldown_time = 30
 combo_index = -1
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
@@ -116,6 +130,7 @@ boss = NodePath("Boss")
 
 [node name="Boss" parent="." unique_id=1872328963 instance=ExtResource("2_kq0y1")]
 position = Vector2(907, 299)
+stats = SubResource("Resource_l1ep3")
 
 [node name="LevelTimer" type="Timer" parent="." unique_id=1620503169]
 one_shot = true
@@ -155,21 +170,20 @@ visible = false
 [node name="WinPopup" parent="." unique_id=880691489 instance=ExtResource("10_v5q41")]
 visible = false
 
-[node name="BoardTileMapLayer" parent="." unique_id=1549379355 node_paths=PackedStringArray("player_unit_arr") instance=ExtResource("11_s3v2u")]
+[node name="BoardTileMapLayer" parent="." unique_id=1549379355 instance=ExtResource("11_s3v2u")]
 position = Vector2(180, 149)
-player_unit_arr = [NodePath("Player_Unit"), NodePath("Player_Unit2"), NodePath("Player_Unit3")]
 
 [node name="Player_Unit" parent="BoardTileMapLayer" unique_id=713205843 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(116, 13)
-stats = SubResource("Resource_2t3te")
+stats = SubResource("Resource_x285y")
 
 [node name="Player_Unit2" parent="BoardTileMapLayer" unique_id=1787286683 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(4, 73)
-stats = SubResource("Resource_jt70k")
+stats = SubResource("Resource_6rjg5")
 
 [node name="Player_Unit3" parent="BoardTileMapLayer" unique_id=1950395807 groups=["player_units"] instance=ExtResource("5_cow7c")]
 position = Vector2(103, 97)
-stats = SubResource("Resource_blm44")
+stats = SubResource("Resource_6p75p")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
 script = ExtResource("10_704g2")
