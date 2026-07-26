@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackResource" format=3 uid="uid://ba2241s256dvr"]
+
+[ext_resource type="Resource" uid="uid://bwpi2onptdkfo" path="res://data/moth_bullet.tres" id="1_07q7q"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="2_s8aab"]
+
+[resource]
+script = ExtResource("2_s8aab")
+dmg_per_bullet = 1.0
+bullet_amount = 3
+bullet = ExtResource("1_07q7q")
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"

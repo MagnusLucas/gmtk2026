@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://dqi3eqwegmpsl"]
+
+[ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="1_oq4kr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_851ce"]
+load_path = "res://.godot/imported/cat_bullet.png-86fa92bb49989e37e6c904fd78d5056e.ctex"
+
+[resource]
+script = ExtResource("1_oq4kr")
+texture = SubResource("CompressedTexture2D_851ce")
+damage = 2.5
+fly_time = 1.0
+metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"

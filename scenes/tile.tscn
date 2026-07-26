@@ -19,7 +19,7 @@ shader_parameter/top = true
 shader_parameter/bottom = true
 
 [sub_resource type="Gradient" id="Gradient_jy7pm"]
-offsets = PackedFloat32Array(0, 0.849, 0.899, 0.949, 1)
+offsets = PackedFloat32Array(0, 0.749, 0.874, 0.999, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jy7pm"]

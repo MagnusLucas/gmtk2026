@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackResource" format=3 uid="uid://dv1ji3xnug8y3"]
+
+[ext_resource type="Resource" uid="uid://dqi3eqwegmpsl" path="res://data/cat_bullet.tres" id="1_7t5ux"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="2_wf6pl"]
+
+[resource]
+script = ExtResource("2_wf6pl")
+dmg_per_bullet = 1.0
+bullet_amount = 1
+bullet = ExtResource("1_7t5ux")
+metadata/_custom_type_script = "uid://rxqs4rh1xy0r"

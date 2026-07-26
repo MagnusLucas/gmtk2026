@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://2qv0ywttwod0"]
+
+[ext_resource type="Texture2D" uid="uid://b8iml1a6ngmdi" path="res://assets/grafiki/cat_tile_off.png" id="1_udfyd"]
+[ext_resource type="Texture2D" uid="uid://c6hgvhm43gj6q" path="res://assets/grafiki/cat_tile_on.png" id="2_xwcx4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_udfyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xwcx4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

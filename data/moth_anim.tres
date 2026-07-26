@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://drrmbb57xro8b"]
+
+[ext_resource type="Texture2D" uid="uid://dchlm7hjhbm5r" path="res://assets/grafiki/moth_tile_off.png" id="1_uir2e"]
+[ext_resource type="Texture2D" uid="uid://hy40q3optiem" path="res://assets/grafiki/moth_tile_on.png" id="2_qahc5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uir2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qahc5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
