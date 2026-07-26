@@ -10,6 +10,7 @@ var speed: float
 var bullet_data: BulletResource
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var damage_label: Label = $DamageLabel
 
 
 static func new_from_resource(bullet_resource: BulletResource, 
@@ -19,7 +20,7 @@ static func new_from_resource(bullet_resource: BulletResource,
 	var instance: Bullet = BULLET.instantiate()
 	instance.set_resource(bullet_resource)
 	instance._calculate_speed(distance_to_travel)
-	instance.damage = bullet_resource.damage * damage_modifier
+	instance.set_damage(bullet_resource.damage * damage_modifier)
 	instance.target = target_enemy
 	return instance
 
@@ -48,9 +49,22 @@ func _calculate_speed(distance_to_travel: float) -> void:
 
 func _update_visuals() -> void:
 	sprite_2d.texture = bullet_data.texture
+	damage_label.text = str(int(round(damage)))
+
+
+func set_damage(new_damage: float) -> void:
+	damage = new_damage
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Boss:
 		(area as Boss).take_damage(damage)
-		queue_free()
+		speed = 0
+		sprite_2d.hide()
+		damage_label.show()
+		var tween := get_tree().create_tween()
+		const END_OFFSET := Vector2(0, -30)
+		const TWEEN_TIME := 1.0
+		tween.tween_property(damage_label, "position", damage_label.position + END_OFFSET, TWEEN_TIME)
+		tween.parallel().tween_property(damage_label, "modulate:a", 0., TWEEN_TIME)
+		tween.tween_callback(queue_free)

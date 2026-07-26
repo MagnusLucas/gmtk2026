@@ -13,7 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_3maf5"]
 script = ExtResource("2_k1abw")
-health = 5
+health = 15
 animated_texture_frames = ExtResource("2_bj8vm")
 metadata/_custom_type_script = "uid://dl6hh4bpjeyl7"
 
