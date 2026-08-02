@@ -33,7 +33,6 @@ func _ready() -> void:
 	set_emitter(EMITTER_POSITION)
 	
 	signal_manager.signal_created.connect(_on_signal_created)
-	signal_manager.signal_died.connect(_on_signal_died)
 	set_players_on_board()
 
 func set_players_on_board():
@@ -63,10 +62,6 @@ func _on_emitter_signal_created(time_seconds: float, coords: Vector2i, tile_data
 	SignalManager.Instance.spread_emitter_signal(coords, tile_data, time_seconds)
 
 
-func _on_signal_died(coords: Vector2i) -> void:
-	tile_dict[coords].remove_signal()
-
-
 func set_tile(tile: Tile, target_position: Vector2i) -> void:
 	if !board.try_set_tile(tile.get_tile_data(), target_position):
 		print_debug("tile occupied!")
@@ -81,7 +76,6 @@ func set_tile(tile: Tile, target_position: Vector2i) -> void:
 
 func _on_signal_created(tile_position: Vector2i, tile_signal: TileSignal) -> void:
 	tile_dict[tile_position].set_tile_signal(tile_signal)
-	tile_dict[tile_position].set_signal(true)
 
 
 # This should be a unit manager :v TODO

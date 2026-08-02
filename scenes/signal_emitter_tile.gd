@@ -34,13 +34,13 @@ func _ready() -> void:
 		func(): 
 			animating = false
 	)
-	signal_texture.set_signal(false)
+	signal_texture._hide_signal()
 
 
 func _process(delta: float) -> void:
 	time_since_last_clicked += delta
 	if animating:
-		sprite_2d.texture.animate_outward(delta)
+		sprite_2d.texture._animate_outward(delta)
 	if is_marked:
 		texture_progress_bar.value = timer.time_left / timer.wait_time
 
@@ -80,7 +80,7 @@ func _on_clicked() -> void:
 		audio_stream_player.stream = Beat.next_audio()
 		audio_stream_player.play()
 		set_marked(true)
-		(sprite_2d.texture as SignalTexture).set_signal(true)
+		(sprite_2d.texture as SignalTexture)._show_signal()
 	time_since_last_clicked = 0
 
 

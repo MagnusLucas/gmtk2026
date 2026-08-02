@@ -20,3 +20,5 @@ board = ExtResource("2_rxll2")
 [node name="SignalManager" type="Node2D" parent="." unique_id=1416148921]
 script = ExtResource("4_pdmf1")
 board = ExtResource("2_rxll2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=499660330]

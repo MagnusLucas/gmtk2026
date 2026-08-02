@@ -9,10 +9,8 @@ const TILE = preload("uid://dxifl4lqvcmsr")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 var tile_data: OurTileData
-var animating := false
-var receiving_signal := false
-var has_tile_signal := false
 var tile_signal: TileSignal
+var signal_texture: SignalTexture
 
 
 static func new_tile(our_tile_data: OurTileData) -> Tile:
@@ -24,22 +22,12 @@ static func new_tile(our_tile_data: OurTileData) -> Tile:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	input_event.connect(_on_input_event)
-	var signal_texture := SignalTexture.new()
+	signal_texture = SignalTexture.new()
 	sprite_2d.texture = signal_texture
-	signal_texture.animation_finished.connect(
-		func(): animating = false
-	)
-	set_signal(false)
 
 
 func _process(delta: float) -> void:
-	if animating:
-		if receiving_signal:
-			sprite_2d.texture.animate_inward(delta)
-		else:
-			sprite_2d.texture.animate_outward(delta)
-	if tile_signal:
-		(sprite_2d.texture as SignalTexture).set_signal_strength(tile_signal.calculate_strength())
+	signal_texture.process(delta)
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -52,33 +40,20 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			return
 		if mouse_button_event.button_index == MOUSE_BUTTON_RIGHT:
 			right_clicked.emit()
-			if has_tile_signal:
-				set_signal(false)
-
-
-func remove_signal() -> void:
-	animating = false
-	(sprite_2d.texture as SignalTexture).set_signal(false)
+			if tile_signal:
+				signal_texture.animate_spreading_signal()
 
 
 func set_marked(marked: bool) -> void:
 	line_2d.visible = marked
 
 
-func set_signal(received: bool) -> void:
-	animating = true
-	receiving_signal = received
-	has_tile_signal = received
-	#(sprite_2d.texture as SignalTexture).set_signal(has_tile_signal)
-
-
 func set_tile_signal(new_tile_signal: TileSignal) -> void:
 	tile_signal = new_tile_signal
 	tile_signal.died.connect(
-		func(): 
-			tile_signal = null
-			remove_signal(),
+		func(): tile_signal = null,
 		CONNECT_ONE_SHOT)
+	signal_texture.set_tile_signal(tile_signal)
 
 
 func set_tile_data(our_tile_data: OurTileData) -> void:
