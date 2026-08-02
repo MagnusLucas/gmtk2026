@@ -28,7 +28,7 @@ func _ready() -> void:
 # This setup will spawn bullets from new active attack if any are remaining,
 # but I don't think it'll be a problem in this project
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if position.distance_to(expected_position) > 1:
 		position = lerp(position, expected_position, 0.7)
 		settile = true
