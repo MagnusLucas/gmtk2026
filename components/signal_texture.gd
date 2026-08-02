@@ -14,12 +14,11 @@ const MINIMUM_POINT_DISTANCE = 0.001
 @export var signal_colour: Color = Color.WHITE : set = _set_signal_colour
 @export_range(0.001, 0.25) var signal_size_relative: float = 0.25
 @export_range(0, 1) var animation_time_modifier := 0.5
-@export_range(0, 1) var pulse_size_relative := 0.7
+@export_range(0, 1) var pulse_size_relative := 0.5
 
 @export_tool_button("Generate gradient")
 var generate_gradient_action = _generate_gradient
 
-var half_move_range: float
 var currently_animating := false
 var current_animation_speed := 0.0
 var tile_signal: TileSignal
@@ -31,7 +30,6 @@ func _init() -> void:
 	fill_from = Vector2.ONE / 2
 	width = 128
 	height = 128
-	half_move_range = 0.5 - signal_size_relative - MINIMUM_POINT_DISTANCE
 	_generate_gradient()
 
 
@@ -47,7 +45,9 @@ func process(delta: float) -> void:
 func set_tile_signal(new_tile_signal: TileSignal) -> void:
 	tile_signal = new_tile_signal
 	animation_time = (1.0 - TileSignal.max_inaccuracy) * animation_time_modifier
+	animation_time *= tile_signal.perfect_seconds()
 	if animation_time > 0:
+		_calculate_animation_speed()
 		currently_animating = true
 	else:
 		push_warning("Animation time for ", self, " negative! Omitting animation")
@@ -56,7 +56,27 @@ func set_tile_signal(new_tile_signal: TileSignal) -> void:
 
 func animate_spreading_signal() -> void:
 	currently_animating = true
+	_calculate_animation_speed()
 	tile_signal = null
+
+
+func _range_size() -> float:
+	return 1.0 - MINIMUM_POINT_DISTANCE * 2 - signal_size_relative
+
+
+func _calculate_animation_speed() -> void:
+	
+	current_animation_speed = _calculate_visual_value() / animation_time
+
+
+func _calculate_visual_value() -> float:
+	var current_visual_value: float
+	
+	var middle_point_position := gradient.get_offset(2)
+	var offset := MINIMUM_POINT_DISTANCE + signal_size_relative / 2
+	
+	current_visual_value = (middle_point_position - offset) / _range_size()
+	return current_visual_value
 
 
 func _stop_animating() -> void:
@@ -66,7 +86,7 @@ func _stop_animating() -> void:
 	animation_finished.emit()
 
 
-func _animation_should_stop() -> bool:
+func _animation_time_passed() -> bool:
 	return time_since_animation_started > animation_time
 
 
@@ -85,9 +105,9 @@ func _is_spreading_signal() -> bool:
 
 func _generate_gradient() -> void:
 	gradient = Gradient.new()
-	gradient.add_point(0.5 - signal_size_relative, Color.BLACK)
+	gradient.add_point(0.5 - signal_size_relative / 2, Color.BLACK)
 	gradient.add_point(0.5, signal_colour)
-	gradient.add_point(0.5 + signal_size_relative, Color.BLACK)
+	gradient.add_point(0.5 + signal_size_relative / 2, Color.BLACK)
 	gradient.set_color(4, Color.BLACK)
 	_hide_signal()
 
@@ -100,10 +120,10 @@ func _set_signal_colour(value: Color) -> void:
 
 func _set_signal_strength(value: float) -> void:
 	signal_strength = value
-	var max_point_move_distance := 1.0 - MINIMUM_POINT_DISTANCE * 2 - signal_size_relative * 2
-	var pulse_move_distance := max_point_move_distance * pulse_size_relative
 	
-	var move_by := pulse_move_distance * signal_strength
+	var max_pulse_move_distance := _range_size() * pulse_size_relative
+	
+	var move_by := max_pulse_move_distance * signal_strength
 	_show_signal()
 	
 	for point in range(3, 0, -1):
@@ -112,19 +132,21 @@ func _set_signal_strength(value: float) -> void:
 
 func _animate_outward(delta: float) -> void:
 	var animation_piece := delta / animation_time
-	var offset := animation_piece * half_move_range
+	var offset := animation_piece * _range_size()
 	for i in range(3, 0, -1):
 		gradient.set_offset(i, gradient.get_offset(i) + offset)
+	time_since_animation_started += delta
 	if gradient.get_offset(3) + MINIMUM_POINT_DISTANCE + offset >= 1:
 		_stop_animating()
 
 
 func _animate_inward(delta: float) -> void:
 	var animation_piece := delta / animation_time
-	var offset := animation_piece * half_move_range
+	var offset := animation_piece * _range_size()
 	for i in range(1, 4):
 		gradient.set_offset(i, gradient.get_offset(i) - offset)
-	if gradient.get_offset(1) - MINIMUM_POINT_DISTANCE - offset <= 0:
+	time_since_animation_started += delta
+	if _animation_time_passed() or gradient.get_offset(1) - MINIMUM_POINT_DISTANCE - offset < 0:
 		_stop_animating()
 
 
