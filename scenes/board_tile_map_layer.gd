@@ -80,9 +80,7 @@ func set_tile(tile: Tile, target_position: Vector2i) -> void:
 
 
 func _on_signal_created(tile_position: Vector2i, tile_signal: TileSignal) -> void:
-	var test := TestSignalShower.from_signal(tile_signal)
-	add_child(test)
-	test.position = map_to_local(tile_position)
+	tile_dict[tile_position].set_tile_signal(tile_signal)
 	tile_dict[tile_position].set_signal(true)
 
 

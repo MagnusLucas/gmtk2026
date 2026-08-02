@@ -12,6 +12,7 @@ var tile_data: OurTileData
 var animating := false
 var receiving_signal := false
 var has_tile_signal := false
+var tile_signal: TileSignal
 
 
 static func new_tile(our_tile_data: OurTileData) -> Tile:
@@ -37,6 +38,8 @@ func _process(delta: float) -> void:
 			sprite_2d.texture.animate_inward(delta)
 		else:
 			sprite_2d.texture.animate_outward(delta)
+	if tile_signal:
+		(sprite_2d.texture as SignalTexture).set_signal_strength(tile_signal.calculate_strength())
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -67,6 +70,15 @@ func set_signal(received: bool) -> void:
 	receiving_signal = received
 	has_tile_signal = received
 	#(sprite_2d.texture as SignalTexture).set_signal(has_tile_signal)
+
+
+func set_tile_signal(new_tile_signal: TileSignal) -> void:
+	tile_signal = new_tile_signal
+	tile_signal.died.connect(
+		func(): 
+			tile_signal = null
+			remove_signal(),
+		CONNECT_ONE_SHOT)
 
 
 func set_tile_data(our_tile_data: OurTileData) -> void:

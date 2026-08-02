@@ -8,6 +8,7 @@ const MINIMUM_POINT_DISTANCE = 0.001
 
 @export var signal_colour: Color = Color.WHITE : set = _set_signal_colour
 @export_range(0.001, 0.25) var signal_size_relative: float = 0.25
+@export_range(0, 1) var signal_strength := 1.0 : set = set_signal_strength
 @export var animation_time := 0.2
 @export_tool_button("Generate gradient")
 var generate_gradient_action = _generate_gradient
@@ -38,6 +39,19 @@ func _set_signal_colour(value: Color) -> void:
 	signal_colour = value
 	if gradient.get_point_count() > 2:
 		gradient.set_color(2, value)
+
+
+func set_signal_strength(value: float) -> void:
+	signal_strength = value
+	var max_point_move_distance := 1.0 - MINIMUM_POINT_DISTANCE * 2 - signal_size_relative * 2
+	var half_point_move_distance := max_point_move_distance / 2
+	
+	set_signal(true)
+	var move_by := half_point_move_distance * signal_strength
+	
+	for point in range(3, 0, -1):
+		gradient.set_offset(point, gradient.get_offset(point) + move_by)
+	
 
 
 func animate_outward(delta: float) -> void:
