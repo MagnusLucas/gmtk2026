@@ -1,129 +1,138 @@
 [gd_scene format=3 uid="uid://bwpmel6p2x5xv"]
 
-[ext_resource type="Script" uid="uid://dp33irq8xtkex" path="res://i am honestly not sure but dont wanna leave a mess/lose_pop_up.gd" id="1_57auq"]
+[ext_resource type="Script" uid="uid://dl1elkvcylwq4" path="res://i am honestly not sure but dont wanna leave a mess/restart_popup.gd" id="2_mmpah"]
 
-[sub_resource type="Animation" id="Animation_ulhbb"]
+[sub_resource type="Animation" id="Animation_bihdx"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Container/Label:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [null]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Container/Label:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
-[sub_resource type="Animation" id="Animation_4nm0x"]
+[sub_resource type="Animation" id="Animation_3nl7s"]
 resource_name = "losing_text"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Container:rotation")
+tracks/0/path = NodePath("Panel/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.66, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.7882353, 0.14117648, 0.39215687, 1), Color(0.6313726, 0.8980392, 0.3529412, 1), Color(0.06666667, 0.6784314, 0.75686276, 1), Color(0.7882353, 0.14117648, 0.39215687, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Label:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.18500490071139933, 0.14486232791552955]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_quody"]
+_data = {
+&"RESET": SubResource("Animation_bihdx"),
+&"rotate_and_change_colour": SubResource("Animation_3nl7s")
+}
+
+[sub_resource type="Animation" id="Animation_8cckr"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/RestartButton:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0.16666667, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.18500490071139933, 0.14486232791552955]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Container/Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.66, 0.96666664),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 0, 0, 1)]
+"values": [0.14486232791552955, -0.18500490071139933]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxlm4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qwmp"]
 _data = {
-&"RESET": SubResource("Animation_ulhbb"),
-&"losing_text": SubResource("Animation_4nm0x")
+&"rotate": SubResource("Animation_8cckr")
 }
 
-[node name="LosePopup" type="Control" unique_id=804366258]
+[node name="LosePopup" type="VBoxContainer" unique_id=855557825]
 process_mode = 2
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -66.0
+offset_right = 121.5
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_57auq")
+script = ExtResource("2_mmpah")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2116305999]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.3
-anchor_right = 0.8
-anchor_bottom = 0.7
-offset_bottom = 3.0517578e-05
-color = Color(0.07058824, 0.07058824, 0.07058824, 0.28627452)
-metadata/_edit_use_anchors_ = true
+[node name="Panel" type="Panel" parent="." unique_id=1214341055]
+custom_minimum_size = Vector2(800, 300)
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Container" type="Control" parent="." unique_id=1720724491]
+[node name="Label" type="Label" parent="Panel" unique_id=402316640]
+modulate = Color(0.7882353, 0.14117648, 0.39215687, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.047560215
-
-[node name="Label" type="Label" parent="Container" unique_id=1584736529]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -374.5
+offset_left = -187.5
 offset_top = -22.5
-offset_right = 374.5
+offset_right = 187.5
 offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.047560215
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 32
 text = "YOU LOST EVERYTHING EVEN THE LOSING ITSELF"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1686040322]
-libraries/ = SubResource("AnimationLibrary_mxlm4")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Label" unique_id=646308660]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_quody")
+autoplay = &"rotate_and_change_colour"
 
-[node name="Restart_button" type="Button" parent="." unique_id=1030319725]
-layout_mode = 0
-offset_left = 459.0
-offset_top = 430.0
-offset_right = 678.0
-offset_bottom = 526.0
+[node name="Control" type="Control" parent="." unique_id=27173351]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RestartButton" type="Button" parent="Control" unique_id=1566338692]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -60.0
+offset_right = 121.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.007417643
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
 text = "restart"
 
-[connection signal="pressed" from="Restart_button" to="." method="_on_restart_button_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/RestartButton" unique_id=267103966]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_4qwmp")
+autoplay = &"rotate"
+
+[connection signal="pressed" from="Control/RestartButton" to="." method="_on_restart_button_pressed"]

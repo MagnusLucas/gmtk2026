@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rq6o3516shhg"
+uid="uid://c3bkc2gqbx8e6"
 path="res://.godot/imported/paleta_island-joy-16-1x.png-fa9011623c1ba33083919a4115282a81.ctex"
 metadata={
 "vram_texture": false
@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/paleta_island-joy-16-1x.png-fa9011623c1ba3308
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

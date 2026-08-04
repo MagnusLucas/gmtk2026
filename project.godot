@@ -28,6 +28,10 @@ window/stretch/aspect="expand"
 
 player_units=""
 
+[gui]
+
+theme/custom="uid://l0mu2yy7t2dd"
+
 [input]
 
 ui_cancel={

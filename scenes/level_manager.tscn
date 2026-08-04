@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://badl12ebvuvtn" path="res://assets/moth.tres" id="22_8mqla"]
 [ext_resource type="Texture2D" uid="uid://ddw7or8ug7bus" path="res://assets/grafiki/shrimp.png" id="24_5dqnh"]
 
-[sub_resource type="Resource" id="Resource_hexca"]
+[sub_resource type="Resource" id="Resource_1y127"]
 resource_local_to_scene = true
 script = ExtResource("8_h2xtc")
 name = "shrimp"
@@ -35,7 +35,7 @@ combo_cooldown_time = 30
 combo_index = -1
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[sub_resource type="Resource" id="Resource_ullk0"]
+[sub_resource type="Resource" id="Resource_7701w"]
 resource_local_to_scene = true
 script = ExtResource("8_h2xtc")
 name = "moth"
@@ -46,7 +46,7 @@ combo_cooldown_time = 30
 combo_index = 0
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
-[sub_resource type="Resource" id="Resource_cmf65"]
+[sub_resource type="Resource" id="Resource_nudd8"]
 resource_local_to_scene = true
 script = ExtResource("8_h2xtc")
 name = "cat"
@@ -74,17 +74,17 @@ position = Vector2(180, 149)
 player_unit_arr = [NodePath("PlayerUnitIcon"), NodePath("PlayerUnitIcon2"), NodePath("PlayerUnitIcon3")]
 
 [node name="PlayerUnitIcon" parent="BoardTileMapLayer" unique_id=713205843 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
-stats = SubResource("Resource_hexca")
+stats = SubResource("Resource_1y127")
 unit_sprite = NodePath("../../PlayerUnitSprite3")
 
 [node name="PlayerUnitIcon2" parent="BoardTileMapLayer" unique_id=676615226 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
 position = Vector2(83, 59)
-stats = SubResource("Resource_ullk0")
+stats = SubResource("Resource_7701w")
 unit_sprite = NodePath("../../PlayerUnitSprite2")
 
 [node name="PlayerUnitIcon3" parent="BoardTileMapLayer" unique_id=1530738815 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
 position = Vector2(25, 145)
-stats = SubResource("Resource_cmf65")
+stats = SubResource("Resource_nudd8")
 unit_sprite = NodePath("../../PlayerUnitSprite")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
