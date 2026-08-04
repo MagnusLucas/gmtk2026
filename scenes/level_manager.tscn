@@ -3,18 +3,58 @@
 [ext_resource type="Script" uid="uid://db210udx0pgua" path="res://i am honestly not sure but dont wanna leave a mess/level_manager.gd" id="1_ftccg"]
 [ext_resource type="PackedScene" uid="uid://dl5epcybgax8k" path="res://scenes/boss.tscn" id="2_kq0y1"]
 [ext_resource type="Script" uid="uid://qufydkc1f8tb" path="res://scenes/time_progress_bar.gd" id="3_8txj0"]
+[ext_resource type="SpriteFrames" uid="uid://cgyyvn8xg8ip7" path="res://data/shrimp_anim.tres" id="5_8mqla"]
+[ext_resource type="Script" uid="uid://rxqs4rh1xy0r" path="res://data/attack_resource.gd" id="6_6p75p"]
 [ext_resource type="PackedScene" uid="uid://tg80xev8scww" path="res://scenes/player_unit/player_unit_sprite.tscn" id="7_2t3te"]
+[ext_resource type="Resource" uid="uid://bl0j5e2yfiik1" path="res://data/shrimp_attack.tres" id="7_5dqnh"]
 [ext_resource type="PackedScene" uid="uid://bwpmel6p2x5xv" path="res://scenes/lose_popup.tscn" id="8_fxbef"]
+[ext_resource type="Script" uid="uid://b0bel2rt4tiin" path="res://data/unit_resource.gd" id="8_h2xtc"]
 [ext_resource type="Resource" uid="uid://braw15v4gvsyu" path="res://assets/cat.tres" id="8_h03sj"]
+[ext_resource type="SpriteFrames" uid="uid://drrmbb57xro8b" path="res://data/moth_anim.tres" id="10_1y127"]
 [ext_resource type="Script" uid="uid://ce1gy7bactc6b" path="res://components/bullet_manager.gd" id="10_704g2"]
 [ext_resource type="PackedScene" uid="uid://d2hmy5ios0876" path="res://scenes/win_popup.tscn" id="10_v5q41"]
+[ext_resource type="Resource" uid="uid://ba2241s256dvr" path="res://data/moth_attack.tres" id="11_7701w"]
 [ext_resource type="PackedScene" uid="uid://k07np4o6ppx" path="res://scenes/board_tile_map_layer.tscn" id="11_s3v2u"]
+[ext_resource type="SpriteFrames" uid="uid://2qv0ywttwod0" path="res://data/cat_anim.tres" id="13_nudd8"]
 [ext_resource type="Resource" uid="uid://bapus28dabl5f" path="res://assets/shrimp.tres" id="14_2t3te"]
+[ext_resource type="Resource" uid="uid://dv1ji3xnug8y3" path="res://data/cat_attack.tres" id="14_rdov2"]
 [ext_resource type="Texture2D" uid="uid://ysclnf0f1lkp" path="res://assets/grafiki/cat.png" id="19_6rjg5"]
 [ext_resource type="Script" uid="uid://gldocgqk2ecf" path="res://scenes/player_unit.gd" id="19_blm44"]
 [ext_resource type="Texture2D" uid="uid://bpyikym71n1j" path="res://assets/grafiki/moth.png" id="22_6p75p"]
 [ext_resource type="Resource" uid="uid://badl12ebvuvtn" path="res://assets/moth.tres" id="22_8mqla"]
 [ext_resource type="Texture2D" uid="uid://ddw7or8ug7bus" path="res://assets/grafiki/shrimp.png" id="24_5dqnh"]
+
+[sub_resource type="Resource" id="Resource_hexca"]
+resource_local_to_scene = true
+script = ExtResource("8_h2xtc")
+name = "shrimp"
+attacks = Array[ExtResource("6_6p75p")]([ExtResource("7_5dqnh")])
+animated_texture_frames = ExtResource("5_8mqla")
+texture = ExtResource("24_5dqnh")
+combo_cooldown_time = 30
+combo_index = -1
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[sub_resource type="Resource" id="Resource_ullk0"]
+resource_local_to_scene = true
+script = ExtResource("8_h2xtc")
+name = "moth"
+attacks = Array[ExtResource("6_6p75p")]([ExtResource("11_7701w")])
+animated_texture_frames = ExtResource("10_1y127")
+texture = ExtResource("22_6p75p")
+combo_cooldown_time = 30
+combo_index = 0
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
+
+[sub_resource type="Resource" id="Resource_cmf65"]
+resource_local_to_scene = true
+script = ExtResource("8_h2xtc")
+name = "cat"
+attacks = Array[ExtResource("6_6p75p")]([ExtResource("14_rdov2")])
+animated_texture_frames = ExtResource("13_nudd8")
+texture = ExtResource("19_6rjg5")
+combo_cooldown_time = 30
+metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x285y"]
 bg_color = Color(0, 0, 0, 1)
@@ -29,60 +69,22 @@ boss = NodePath("Boss")
 [node name="Boss" parent="." unique_id=1872328963 instance=ExtResource("2_kq0y1")]
 position = Vector2(907, 299)
 
-[node name="LevelTimer" type="Timer" parent="." unique_id=1620503169]
-one_shot = true
-
-[node name="TimeProgressBar" type="ProgressBar" parent="LevelTimer" unique_id=3649765 node_paths=PackedStringArray("timer")]
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 80.0
-offset_top = 20.0
-offset_right = -76.0
-offset_bottom = 67.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_x285y")
-theme_override_styles/fill = SubResource("StyleBoxFlat_yv6w6")
-value = 7.83
-show_percentage = false
-script = ExtResource("3_8txj0")
-timer = NodePath("..")
-
-[node name="Label" type="Label" parent="LevelTimer/TimeProgressBar" unique_id=1059429564]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LosePopup" parent="." unique_id=804366258 instance=ExtResource("8_fxbef")]
-visible = false
-
-[node name="WinPopup" parent="." unique_id=880691489 instance=ExtResource("10_v5q41")]
-visible = false
-
 [node name="BoardTileMapLayer" parent="." unique_id=1549379355 node_paths=PackedStringArray("player_unit_arr") instance=ExtResource("11_s3v2u")]
 position = Vector2(180, 149)
 player_unit_arr = [NodePath("PlayerUnitIcon"), NodePath("PlayerUnitIcon2"), NodePath("PlayerUnitIcon3")]
 
 [node name="PlayerUnitIcon" parent="BoardTileMapLayer" unique_id=713205843 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
-stats = ExtResource("14_2t3te")
+stats = SubResource("Resource_hexca")
 unit_sprite = NodePath("../../PlayerUnitSprite3")
 
 [node name="PlayerUnitIcon2" parent="BoardTileMapLayer" unique_id=676615226 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
 position = Vector2(83, 59)
-stats = ExtResource("22_8mqla")
+stats = SubResource("Resource_ullk0")
 unit_sprite = NodePath("../../PlayerUnitSprite2")
 
 [node name="PlayerUnitIcon3" parent="BoardTileMapLayer" unique_id=1530738815 node_paths=PackedStringArray("unit_sprite") groups=["player_units"] instance=ExtResource("7_2t3te")]
 position = Vector2(25, 145)
-stats = ExtResource("8_h03sj")
+stats = SubResource("Resource_cmf65")
 unit_sprite = NodePath("../../PlayerUnitSprite")
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
@@ -120,3 +122,55 @@ metadata/_custom_type_script = "uid://gldocgqk2ecf"
 
 [node name="Node2D" type="Node2D" parent="PlayerUnitSprite3" unique_id=323976037]
 position = Vector2(95, 2)
+
+[node name="LevelUI" type="Control" parent="." unique_id=200916625]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelTimer" type="Timer" parent="LevelUI" unique_id=1620503169]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TimeProgressBar" type="ProgressBar" parent="LevelUI/LevelTimer" unique_id=3649765 node_paths=PackedStringArray("timer")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 20.0
+offset_right = -76.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_x285y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yv6w6")
+value = 7.83
+show_percentage = false
+script = ExtResource("3_8txj0")
+timer = NodePath("..")
+
+[node name="Label" type="Label" parent="LevelUI/LevelTimer/TimeProgressBar" unique_id=1059429564]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LosePopup" parent="LevelUI" unique_id=804366258 instance=ExtResource("8_fxbef")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="WinPopup" parent="LevelUI" unique_id=880691489 instance=ExtResource("10_v5q41")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1

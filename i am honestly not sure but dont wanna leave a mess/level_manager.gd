@@ -3,7 +3,9 @@ extends Node
 
 @export var boss: Boss
 
-@onready var level_timer: Timer = $LevelTimer
+@onready var level_timer: Timer = %LevelTimer
+@onready var lose_popup: Control = %LosePopup
+@onready var win_popup: Control = %WinPopup
 @onready var pause_loaded = preload("res://scenes/pause.tscn")
 
 func _ready() -> void:
@@ -13,12 +15,12 @@ func _ready() -> void:
 
 func _on_countdown_timeout() -> void:
 	get_tree().paused = true
-	$LosePopup.visible = true
+	lose_popup.visible = true
 
 
 func win():
 	get_tree().paused = true
-	$WinPopup.visible = true
+	win_popup.visible = true
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('ui_cancel'):
