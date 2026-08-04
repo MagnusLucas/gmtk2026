@@ -65,6 +65,7 @@ shape = SubResource("CircleShape2D_nj8pf")
 libraries/ = SubResource("AnimationLibrary_y25gk")
 
 [node name="DamageLabel" type="Label" parent="." unique_id=360140772]
+process_mode = 3
 visible = false
 anchors_preset = 7
 anchor_left = 0.5

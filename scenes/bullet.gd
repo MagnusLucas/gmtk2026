@@ -62,9 +62,10 @@ func _on_area_entered(area: Area2D) -> void:
 		speed = 0
 		sprite_2d.hide()
 		damage_label.show()
-		var tween := get_tree().create_tween()
+		var tween := damage_label.create_tween()
 		const END_OFFSET := Vector2(0, -30)
 		const TWEEN_TIME := 1.0
 		tween.tween_property(damage_label, "position", damage_label.position + END_OFFSET, TWEEN_TIME)
+		
 		tween.parallel().tween_property(damage_label, "modulate:a", 0., TWEEN_TIME)
 		tween.tween_callback(queue_free)
