@@ -64,6 +64,10 @@ texture = ExtResource("19_6rjg5")
 combo_cooldown_time = 30
 metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 
+[sub_resource type="Curve" id="Curve_g4v7s"]
+_data = [Vector2(0.010000005, 0.23595512), 0.0, 0.0, 0, 0, Vector2(0.315, 0.6741574), 0.0, 0.0, 0, 0, Vector2(0.575, 0.42696637), 0.0, 0.0, 0, 0, Vector2(0.65999997, 0.8314607), 0.0, 0.0, 0, 0, Vector2(0.9699999, 0.84269667), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x285y"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -104,6 +108,39 @@ unit_sprite = NodePath("../../PlayerUnitSprite2")
 position = Vector2(25, 145)
 stats = SubResource("Resource_5dqnh")
 unit_sprite = NodePath("../../PlayerUnitSprite")
+
+[node name="Label" type="Label" parent="BoardTileMapLayer" unique_id=1753505971]
+offset_left = -163.0
+offset_top = 106.0
+offset_right = -47.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
+text = "right-click here"
+
+[node name="Line2D" type="Line2D" parent="BoardTileMapLayer/Label" unique_id=1324669022]
+points = PackedVector2Array(60, -5, 60, -18, 63, -28, 68, -37, 76, -46, 84, -54, 99, -67, 76, -67, 98, -46, 100, -69)
+width = 7.67
+width_curve = SubResource("Curve_g4v7s")
+default_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
+joint_mode = 2
+
+[node name="Label2" type="Label" parent="BoardTileMapLayer" unique_id=861692926]
+offset_left = -36.0
+offset_top = 451.0
+offset_right = 144.0
+offset_bottom = 474.0
+theme_override_colors/font_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
+text = "right and left-click these tiles"
+
+[node name="Line2D" type="Line2D" parent="BoardTileMapLayer/Label2" unique_id=440371624]
+position = Vector2(144.99998, 82)
+rotation = 0.9175685
+scale = Vector2(-1.7914076, 1.2977617)
+points = PackedVector2Array(60, -5, 60, -18, 63, -28, 68, -37, 76, -46, 84, -54, 99, -67, 76, -67, 98, -46, 100, -69)
+width = 7.67
+width_curve = SubResource("Curve_g4v7s")
+default_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
+joint_mode = 2
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=126264017]
 script = ExtResource("10_704g2")

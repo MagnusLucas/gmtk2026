@@ -54,7 +54,7 @@ border_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
 
 [resource]
 Button/colors/font_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
-Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_i4gmu")
 Button/styles/normal = SubResource("StyleBoxFlat_lph6l")
 Button/styles/pressed = SubResource("StyleBoxFlat_qmycv")
