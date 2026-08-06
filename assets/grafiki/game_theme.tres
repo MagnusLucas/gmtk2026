@@ -5,7 +5,7 @@ content_margin_left = 16.0
 content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
-bg_color = Color(0.41568628, 0.21568628, 0.44313726, 1)
+bg_color = Color(0.22352941, 0.20392157, 0.34117648, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
@@ -17,7 +17,7 @@ content_margin_left = 16.0
 content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
-bg_color = Color(0.41568628, 0.21568628, 0.44313726, 1)
+bg_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
@@ -53,7 +53,7 @@ border_width_bottom = 10
 border_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
 
 [resource]
-Button/colors/font_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
+Button/colors/font_color = Color(0.22352941, 0.20392157, 0.34117648, 1)
 Button/colors/font_hover_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_i4gmu")
 Button/styles/normal = SubResource("StyleBoxFlat_lph6l")

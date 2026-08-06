@@ -19,3 +19,5 @@ func _process(_delta: float) -> void:
 	
 	gradient.set_offset(2, pos_2)
 	gradient.set_offset(1, pos_1)
+	gradient.set_color(1, Color(0.957, 0.549, 0.714, 1.0))
+	gradient.set_color(2, Color(0.957, 0.549, 0.714, 0.0))

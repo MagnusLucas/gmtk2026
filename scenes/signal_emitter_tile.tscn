@@ -49,8 +49,8 @@ repeat = 2
 [sub_resource type="Gradient" id="Gradient_230gs"]
 resource_local_to_scene = true
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.3433735, 0.8648307)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0.95686275, 0.54901963, 0.7137255, 1)
+offsets = PackedFloat32Array(0, 0.46385542, 0.8614458)
+colors = PackedColorArray(0, 0, 0, 0, 0.95686275, 0.54901963, 0.7137255, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a2x7f"]
 gradient = SubResource("Gradient_230gs")
