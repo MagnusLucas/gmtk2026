@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c3dslei3eaw0o" path="res://scenes/signal_emitter_tile.gd" id="1_7kmbh"]
 [ext_resource type="Shader" uid="uid://t57xkq3rqrus" path="res://assets/wires.gdshader" id="1_8j8et"]
 [ext_resource type="Script" uid="uid://c2sw1w06mgsd5" path="res://components/signal_texture.gd" id="2_7kmbh"]
+[ext_resource type="Script" uid="uid://dko3xdrs5nuyj" path="res://scenes/tutorial_sprite.gd" id="4_aqdwq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(64, 64)
@@ -31,6 +32,34 @@ fill_from = Vector2(0.5, 0.5)
 script = ExtResource("2_7kmbh")
 signal_colour = Color(0, 0.54509807, 0, 1)
 metadata/_custom_type_script = "uid://c2sw1w06mgsd5"
+
+[sub_resource type="Gradient" id="Gradient_bimxs"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.87349397)
+colors = PackedColorArray(0, 0, 0, 0, 0.22352941, 0.20392157, 0.34117648, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7kmbh"]
+gradient = SubResource("Gradient_bimxs")
+width = 128
+height = 128
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+repeat = 2
+
+[sub_resource type="Gradient" id="Gradient_230gs"]
+resource_local_to_scene = true
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3433735, 0.8648307)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0.95686275, 0.54901963, 0.7137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2x7f"]
+gradient = SubResource("Gradient_230gs")
+width = 128
+height = 128
+fill = 3
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+repeat = 2
 
 [sub_resource type="Gradient" id="Gradient_7kmbh"]
 interpolation_mode = 2
@@ -66,6 +95,15 @@ material = SubResource("ShaderMaterial_jy7pm")
 scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_jy7pm")
 
+[node name="TutorialSprite" type="Sprite2D" parent="." unique_id=918024312]
+clip_children = 1
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_7kmbh")
+
+[node name="TutorialSprite" type="Sprite2D" parent="TutorialSprite" unique_id=1593343092]
+texture = SubResource("GradientTexture2D_a2x7f")
+script = ExtResource("4_aqdwq")
+
 [node name="Line2D" type="Line2D" parent="." unique_id=1582983497]
 visible = false
 points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
@@ -74,6 +112,7 @@ width = 3.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1149610980]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
