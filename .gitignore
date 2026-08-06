@@ -18,3 +18,8 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+
+# Possibly temporary cus I don't want my files in repo
+build/
+export_presets.cfg
