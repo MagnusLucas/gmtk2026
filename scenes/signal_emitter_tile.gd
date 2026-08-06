@@ -28,7 +28,7 @@ static func new_emitter(our_tile_data: OurTileData) -> SignalEmitterTile:
 func _ready() -> void:
 	input_event.connect(_on_input_event)
 	var signal_texture := SignalTexture.new()
-	signal_texture.signal_colour = Color("008b00")
+	signal_texture.signal_colour = Color("a1e55aff")
 	sprite_2d.texture = signal_texture
 	signal_texture.animation_finished.connect(
 		func(): 

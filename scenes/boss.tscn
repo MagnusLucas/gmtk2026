@@ -62,7 +62,7 @@ _data = {
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
-bg_color = Color(0.6, 0.02745098, 0, 1)
+bg_color = Color(0.79607844, 0.3019608, 0.40784314, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -75,7 +75,6 @@ script = ExtResource("1_jncid")
 stats = SubResource("Resource_3maf5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1443914837]
-modulate = Color(0.64705884, 0.19215687, 0, 1)
 sprite_frames = SubResource("SpriteFrames_hgse7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1538913439]

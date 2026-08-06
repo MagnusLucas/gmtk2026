@@ -24,6 +24,14 @@
 [ext_resource type="Resource" uid="uid://badl12ebvuvtn" path="res://assets/moth.tres" id="22_8mqla"]
 [ext_resource type="Texture2D" uid="uid://ddw7or8ug7bus" path="res://assets/grafiki/shrimp.png" id="24_5dqnh"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mqla"]
+bg_color = Color(0.22352941, 0.20392157, 0.34117648, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
+
 [sub_resource type="Resource" id="Resource_8mqla"]
 resource_local_to_scene = true
 script = ExtResource("8_h2xtc")
@@ -60,11 +68,21 @@ metadata/_custom_type_script = "uid://b0bel2rt4tiin"
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv6w6"]
-bg_color = Color(0.24716693, 0.7151115, 0, 1)
+bg_color = Color(0.35686275, 0.7019608, 0.38039216, 1)
 
 [node name="Level_Manager" type="Node" unique_id=503023504 node_paths=PackedStringArray("boss")]
 script = ExtResource("1_ftccg")
 boss = NodePath("Boss")
+
+[node name="Background" type="Panel" parent="." unique_id=506290842]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8mqla")
 
 [node name="Boss" parent="." unique_id=1872328963 instance=ExtResource("2_kq0y1")]
 position = Vector2(907, 299)
@@ -91,7 +109,8 @@ unit_sprite = NodePath("../../PlayerUnitSprite")
 script = ExtResource("10_704g2")
 
 [node name="PlayerUnitSprite" type="Sprite2D" parent="." unique_id=1219656180 node_paths=PackedStringArray("bullet_spawn_point")]
-position = Vector2(543, 176)
+z_index = -1
+position = Vector2(571, 176)
 texture = ExtResource("19_6rjg5")
 script = ExtResource("19_blm44")
 bullet_spawn_point = NodePath("Node2D")
@@ -102,7 +121,8 @@ metadata/_custom_type_script = "uid://gldocgqk2ecf"
 position = Vector2(63, -39)
 
 [node name="PlayerUnitSprite2" type="Sprite2D" parent="." unique_id=947158800 node_paths=PackedStringArray("bullet_spawn_point")]
-position = Vector2(610, 280)
+z_index = -1
+position = Vector2(640, 280)
 texture = ExtResource("22_6p75p")
 script = ExtResource("19_blm44")
 bullet_spawn_point = NodePath("Node2D")
@@ -113,7 +133,8 @@ metadata/_custom_type_script = "uid://gldocgqk2ecf"
 position = Vector2(32, 25)
 
 [node name="PlayerUnitSprite3" type="Sprite2D" parent="." unique_id=422863855 node_paths=PackedStringArray("bullet_spawn_point")]
-position = Vector2(526, 417)
+z_index = -1
+position = Vector2(559, 417)
 texture = ExtResource("24_5dqnh")
 script = ExtResource("19_blm44")
 bullet_spawn_point = NodePath("Node2D")
@@ -169,6 +190,8 @@ grow_vertical = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="WinPopup" parent="LevelUI" unique_id=880691489 instance=ExtResource("10_v5q41")]
 unique_name_in_owner = true

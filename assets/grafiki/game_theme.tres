@@ -37,6 +37,14 @@ border_width_bottom = 8
 border_color = Color(0.06666667, 0.6784314, 0.75686276, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0.22352941, 0.20392157, 0.34117648, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e52s1"]
 bg_color = Color(0.41568628, 0.21568628, 0.44313726, 1)
 border_width_left = 10
 border_width_top = 10
@@ -51,4 +59,4 @@ Button/styles/hover = SubResource("StyleBoxFlat_i4gmu")
 Button/styles/normal = SubResource("StyleBoxFlat_lph6l")
 Button/styles/pressed = SubResource("StyleBoxFlat_qmycv")
 Panel/styles/panel = SubResource("StyleBoxFlat_ekxnf")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_ekxnf")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_e52s1")

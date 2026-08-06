@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b24vq2wcqf37e" path="res://scenes/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Theme" uid="uid://l0mu2yy7t2dd" path="res://assets/grafiki/game_theme.tres" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://ysclnf0f1lkp" path="res://assets/grafiki/cat.png" id="3_5pajh"]
+[ext_resource type="Texture2D" uid="uid://bpyikym71n1j" path="res://assets/grafiki/moth.png" id="9_svtp6"]
+[ext_resource type="Texture2D" uid="uid://ddw7or8ug7bus" path="res://assets/grafiki/shrimp.png" id="12_3wgol"]
+[ext_resource type="Texture2D" uid="uid://cfrs8kfkatuh6" path="res://assets/grafiki/moth_bullet.png" id="15_1a85y"]
+[ext_resource type="Texture2D" uid="uid://nsoe7ph66b0x" path="res://assets/grafiki/shrimp_bullet.png" id="16_hl5e0"]
 
 [node name="Menu" type="PanelContainer" unique_id=87805790]
-texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,6 +68,45 @@ size_flags_stretch_ratio = 1.25
 theme = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
 text = "QUIT (and be sad)"
+
+[node name="Cat" type="Sprite2D" parent="." unique_id=638670776]
+z_index = 1
+position = Vector2(205, 241)
+rotation = 0.009229317
+scale = Vector2(1.1668133, 1.1668133)
+texture = ExtResource("3_5pajh")
+
+[node name="Moth" type="Sprite2D" parent="." unique_id=244214521]
+position = Vector2(965, 358)
+scale = Vector2(1.8836794, 1.8836794)
+texture = ExtResource("9_svtp6")
+flip_h = true
+
+[node name="Shrimp" type="Sprite2D" parent="." unique_id=59654324]
+position = Vector2(182, 485)
+rotation = -0.13423195
+scale = Vector2(1.3324833, 1.3324833)
+texture = ExtResource("12_3wgol")
+
+[node name="MothBullet" type="Sprite2D" parent="." unique_id=2133730875]
+position = Vector2(725, 425)
+rotation = -0.18308549
+scale = Vector2(1.3784087, 1.3784087)
+texture = ExtResource("15_1a85y")
+flip_h = true
+
+[node name="ShrimpBullet" type="Sprite2D" parent="." unique_id=1453126394]
+position = Vector2(554, 388.99997)
+rotation = -0.078846455
+scale = Vector2(1.7516699, 1.7516699)
+texture = ExtResource("16_hl5e0")
+
+[node name="Fart" type="Sprite2D" parent="." unique_id=307083561]
+position = Vector2(149, 324)
+rotation = -0.39482778
+scale = Vector2(0.49134928, 0.49134928)
+texture = ExtResource("15_1a85y")
+flip_h = true
 
 [connection signal="pressed" from="VBoxContainer2/NavigationMenu/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer2/NavigationMenu/Settings" to="." method="_on_settings_pressed"]

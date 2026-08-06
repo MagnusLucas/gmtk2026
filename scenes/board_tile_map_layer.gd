@@ -28,12 +28,18 @@ func _ready() -> void:
 	
 	for i in board.size.x:
 		for j in board.size.y:
+			set_background_tile(Vector2i(i, j))
 			set_tile(Tile.new_tile(random_tile_data()), Vector2i(i, j))
 	
 	set_emitter(EMITTER_POSITION)
 	
 	signal_manager.signal_created.connect(_on_signal_created)
 	set_players_on_board()
+
+
+func set_background_tile(coorinates: Vector2i) -> void:
+	set_cell(coorinates, 0, Vector2i(0, 0), 1)
+
 
 func set_players_on_board():
 	for player_unit in player_unit_arr:

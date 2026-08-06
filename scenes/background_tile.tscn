@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bouj3ig5816w1"]
+
+[sub_resource type="Gradient" id="Gradient_7rb34"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.006024096, 0.9096386)
+colors = PackedColorArray(0.42745098, 0.96862745, 0.75686276, 1, 0.11764706, 0.53333336, 0.45882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_7rb34")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" unique_id=333149070]
+self_modulate = Color(1, 1, 1, 0.12156863)
+z_index = -100
+texture = SubResource("GradientTexture2D_g4v7s")

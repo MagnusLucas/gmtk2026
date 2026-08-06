@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dl1elkvcylwq4" path="res://i am honestly not sure but dont wanna leave a mess/restart_popup.gd" id="1_rxt7s"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cckr"]
+bg_color = Color(0.41568628, 0.21568628, 0.44313726, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.7882353, 0.14117648, 0.39215687, 1)
+
 [sub_resource type="Animation" id="Animation_bihdx"]
 length = 0.001
 
@@ -67,10 +75,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -121.5
-offset_top = -66.0
-offset_right = 121.5
-offset_bottom = 66.0
+offset_left = -400.0
+offset_top = -152.0
+offset_right = 400.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rxt7s")
@@ -79,6 +87,7 @@ script = ExtResource("1_rxt7s")
 custom_minimum_size = Vector2(800, 300)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cckr")
 
 [node name="Label" type="Label" parent="Panel" unique_id=1584736529]
 modulate = Color(0.7882353, 0.14117648, 0.39215687, 1)

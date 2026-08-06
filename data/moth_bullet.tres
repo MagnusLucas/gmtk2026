@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BulletResource" format=3 uid="uid://bwpi2onptdkfo"]
 
 [ext_resource type="Script" uid="uid://dn7v0mwlwqfd7" path="res://data/bullet_resource.gd" id="1_s1shu"]
-[ext_resource type="Texture2D" uid="uid://nsoe7ph66b0x" path="res://assets/grafiki/shrimp_bullet.png" id="2_mkl7f"]
+[ext_resource type="Texture2D" uid="uid://cfrs8kfkatuh6" path="res://assets/grafiki/moth_bullet.png" id="2_s1shu"]
 
 [resource]
 script = ExtResource("1_s1shu")
-texture = ExtResource("2_mkl7f")
+texture = ExtResource("2_s1shu")
 damage = 2.5
 fly_time = 1.0
 metadata/_custom_type_script = "uid://dn7v0mwlwqfd7"

@@ -46,7 +46,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_aqdwq"]
 offsets = PackedFloat32Array(0, 0.3116883, 0.37012988)
-colors = PackedColorArray(0, 0.54509807, 0, 1, 0, 0.54509807, 0, 1, 0, 0.54509807, 0, 0)
+colors = PackedColorArray(0.35686275, 0.7019608, 0.38039216, 1, 0.35686275, 0.7019608, 0.38039216, 1, 0, 0.54509807, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_230gs"]
 gradient = SubResource("Gradient_aqdwq")

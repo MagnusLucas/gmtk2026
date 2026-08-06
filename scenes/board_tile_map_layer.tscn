@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://k07np4o6ppx"]
 
 [ext_resource type="Script" uid="uid://bcc8ntvve0xrx" path="res://scenes/board_tile_map_layer.gd" id="1_5xyjd"]
+[ext_resource type="PackedScene" uid="uid://bouj3ig5816w1" path="res://scenes/background_tile.tscn" id="1_rxll2"]
 [ext_resource type="Script" uid="uid://b8cnnpee2o5on" path="res://components/tile_swapper.gd" id="2_aj641"]
 [ext_resource type="Resource" uid="uid://bnwmive85j4mu" path="res://data/board.tres" id="2_rxll2"]
 [ext_resource type="Script" uid="uid://bnx5sl8muf7en" path="res://components/signal_manager.gd" id="4_pdmf1"]
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_r1crd"]
+scenes/1/scene = ExtResource("1_rxll2")
+
 [sub_resource type="TileSet" id="TileSet_o36qv"]
 tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_r1crd")
 
 [node name="BoardTileMapLayer" type="TileMapLayer" unique_id=1549379355]
 tile_set = SubResource("TileSet_o36qv")
