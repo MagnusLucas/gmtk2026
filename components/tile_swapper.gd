@@ -12,6 +12,7 @@ func mark_tile(tile: Tile, tile_position: Vector2i) -> void:
 	if marked_tile:
 		if marked_tile == tile:
 			marked_tile.set_marked(false)
+			marked_tile = null
 			return
 		
 		marked_tile.set_marked(false)
