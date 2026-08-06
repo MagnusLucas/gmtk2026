@@ -101,6 +101,7 @@ func spread_signal(signal_position: Vector2i) -> void:
 	
 	var new_signal_strength := signal_to_spread.calculate_strength()
 	if is_zero_approx(new_signal_strength):
+		active_signals[signal_position].beat.remove_signal(active_signals[signal_position])
 		active_signals.erase(signal_position)
 		return
 	
