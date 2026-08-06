@@ -126,16 +126,17 @@ joint_mode = 2
 
 [node name="Label2" type="Label" parent="BoardTileMapLayer" unique_id=861692926]
 offset_left = -36.0
-offset_top = 451.0
-offset_right = 144.0
-offset_bottom = 474.0
+offset_top = 428.0
+offset_right = 167.0
+offset_bottom = 477.0
 theme_override_colors/font_color = Color(0.96862745, 0.7137255, 0.61960787, 1)
-text = "right and left-click these tiles"
+text = "right-click these tiles to spread signal
+left-click these tiles to swap them"
 
 [node name="Line2D" type="Line2D" parent="BoardTileMapLayer/Label2" unique_id=440371624]
-position = Vector2(144.99998, 82)
+position = Vector2(190.99998, 77)
 rotation = 0.9175685
-scale = Vector2(-1.7914076, 1.2977617)
+scale = Vector2(-1.6306247, 1.1812845)
 points = PackedVector2Array(60, -5, 60, -18, 63, -28, 68, -37, 76, -46, 84, -54, 99, -67, 76, -67, 98, -46, 100, -69)
 width = 7.67
 width_curve = SubResource("Curve_g4v7s")

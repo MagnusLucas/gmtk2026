@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b8cnnpee2o5on" path="res://components/tile_swapper.gd" id="2_aj641"]
 [ext_resource type="Resource" uid="uid://bnwmive85j4mu" path="res://data/board.tres" id="2_rxll2"]
 [ext_resource type="Script" uid="uid://bnx5sl8muf7en" path="res://components/signal_manager.gd" id="4_pdmf1"]
+[ext_resource type="AudioStream" uid="uid://mltu4wox8apv" path="res://assets/sfx_pop_down_tile_1.wav" id="5_r1crd"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_r1crd"]
 scenes/1/scene = ExtResource("1_rxll2")
@@ -18,12 +19,15 @@ tile_set = SubResource("TileSet_o36qv")
 script = ExtResource("1_5xyjd")
 board = ExtResource("2_rxll2")
 
-[node name="TileSwapper" type="Node2D" parent="." unique_id=1599080291]
+[node name="TileSwapper" type="Node2D" parent="." unique_id=1599080291 node_paths=PackedStringArray("audio_stream_player")]
 script = ExtResource("2_aj641")
 board = ExtResource("2_rxll2")
+audio_stream_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TileSwapper" unique_id=268319295]
+stream = ExtResource("5_r1crd")
+max_polyphony = 2
 
 [node name="SignalManager" type="Node2D" parent="." unique_id=1416148921]
 script = ExtResource("4_pdmf1")
 board = ExtResource("2_rxll2")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=499660330]
